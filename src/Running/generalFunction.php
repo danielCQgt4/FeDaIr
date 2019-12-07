@@ -159,7 +159,7 @@ function cantidadActual($filter)
     }
 }
 
-
+//Fernanda
 function addUser($user)
 {
     try {
@@ -174,6 +174,7 @@ function addUser($user)
         return 0;
     }
 }
+
 //Facturacion
 function beforePurchase()
 {
@@ -211,7 +212,7 @@ function moveToPurchase()
     }
 }
 
-
+//Fernanda
 function addTarjeta($tarjeta)
 {
     try {
@@ -306,4 +307,3 @@ function listCards()
     $sql = "select idFormaPago,right(numeroTarjeta,4) as numeroTarjeta from FormaPago where idUsuario = " . $session->getIdUser();
     return getJson($sql);
 }
-
