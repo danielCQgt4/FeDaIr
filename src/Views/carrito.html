@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../Assets/CSS/general.css">
         <link rel="stylesheet" href="../Assets/CSS/fidestore.css">
         <link rel="stylesheet" href="../Assets/CSS/msgAdvice.css">
+        <link rel="icon" href="../Assets/IMG/favicon.png">
         <title>FideStore</title>
         <!-- OWN CSS -->
         <link rel="stylesheet" href="../Assets/CSS/carrito.css">
@@ -28,9 +29,6 @@
                         class="d-block text-white w-100 h-100">Inicio/Registro/MiCuenta</a>
                 </li>
             </ul>
-            <!-- style="background: url(../../Assets/IMG/cart_with_items.png) no-repeat;
-                    background-size: 100%;
-                    background-position: center;"  -->
             <div class="btn-action" id="btn-action">
             </div>
         </nav>
@@ -61,8 +59,24 @@
             <!-- END RESUMEN CARRITO -->
             <h3>Metodo de pago</h3>
             <hr>
-            <div class="cart-confirm mt-1">
-                Comprar
+            <div class="cart-pay-method mt-1 mb-2">
+                <div class="cart-pay-method-row-add-card" id="btn-newAddCard"></div>
+                <table class="w-100" style="border-spacing: 0px;">
+                    <tbody id="cart-cards-body-table">
+                        <!-- EXAMPLE CARD
+                        <tr class="cart-pay-method-row">
+                            <td class="pr-1 max-width-px-45">
+                            </td>
+                            <td>
+                                <img src="/Assets/IMG/card.png" alt="Tarjeta" width="136px" height="136px">
+                            </td>
+                            <td class="p-1">
+                                XXXX-1234
+                            </td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
             </div>
             <h3>Confirma tu compra</h3>
             <hr>

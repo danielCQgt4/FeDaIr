@@ -48,7 +48,7 @@
         console.log(data);
         postAjaxRequest(apiURL, data, function (result) {
             if (result != 'Error' || result != '[]') {
-                var json = JSON.parse(result);
+                var json = result;
                 console.log(json.length);
                 if(json.error == 1){
                     var fila = document.createElement("tr");
@@ -88,10 +88,11 @@
         var data = 'historial=1';
         console.log(data);
         postAjaxRequest(apiURL, data, function (result) {
-                var json = JSON.parse(result);
+            if (result != 'Error' || result != '[]') {
+                var json = result;
                 console.log(json.length);
                 if(json.error == 1){
-                        var fila = document.createElement("tr");
+                    var fila = document.createElement("tr");
                         var celda1 = document.createElement("td");
                         var textoCelda1 = document.createTextNode("Sin Registros");
                         celda1.appendChild(textoCelda1);
@@ -101,6 +102,7 @@
                     for (var i = 0; i < json.length; i++) 
                     {
                         var fila = document.createElement("tr");
+                        fila.setAttribute("id", "factura")
                         var celda1 = document.createElement("td");
                         var celda2 = document.createElement("td");
                         var celda3 = document.createElement("td");
@@ -121,6 +123,12 @@
                     }
                    
                 }
+                
+               
+            }else
+            {
+
+            }    
         });
     }
 
@@ -133,7 +141,11 @@
         document.getElementById('tarj').setAttribute("style","display:none");
         document.getElementById('historial').setAttribute("style","display:inline");
     }
+
+
     mostrarTarjetas();
     mostrarHistorial();
 
 })();
+
+

@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../Assets/CSS/general.css">
         <link rel="stylesheet" href="../Assets/CSS/fidestore.css">
         <link rel="stylesheet" href="../Assets/CSS/msgAdvice.css">
+        <link rel="icon" href="../Assets/IMG/favicon.png">
         <title>FideStore</title>
     </head>
 
@@ -35,6 +36,7 @@
         <div class="mt-2 mb-2 box-center-h box-register text-accent border-solid border-w-1">
             <h2 class="text-center mb">Completa la informacion</h2>
             </p>
+            <form id="loginForm">
             <div class="form-group">
                 <label for="ced" class="text-accent">Cedula<p class="text-danger d-inline">*</p></label>
             </div>
@@ -47,21 +49,21 @@
             </div>
             <div class="form-group">
                 <input type="text" name="nombre" id="nombre" class="form-content d-block w-100"
-                    placeholder="Ingresa una contrasena">
+                    placeholder="Ingresa tu Nombre">
             </div>
             <div class="form-group">
                 <label for="usuario" class="text-accent">Usuario<p class="text-danger d-inline">*</p></label>
             </div>
             <div class="form-group">
                 <input type="text" name="usuario" id="usuario" class="form-content d-block w-100"
-                    placeholder="Ingresa una contrasena">
+                    placeholder="Ingresa tu usuario">
             </div>
             <div class="form-group">
                 <label for="telefono" class="text-accent">Telefono</label>
             </div>
             <div class="form-group">
                 <input type="text" name="telefono" id="telefono" class="form-content d-block w-100"
-                    placeholder="Ingresa una contrasena">
+                    placeholder="Ingresa tu Telefono">
             </div>
             <div class="form-group">
                 <label for="password" class="text-accent">Contrasena<p class="text-danger d-inline">*</p></label>
@@ -85,6 +87,7 @@
                 <p class="text-center d-block text-accent">Ya tiene cuenta?</p><a class="text-primary"
                     href1="./login.html">&nbsp; Inicia sesion</a>
             </div>
+        </form>
         </div>
 
         <!-- FOOTER -->
@@ -93,8 +96,9 @@
                 <p>FideStore@cycwebservice.cf</p>
             </div>
         </footer>
-        <script src="../Assets/JS/registro.js"></script>
         <script src="../Assets/JS/general.js"></script>
+        <script src="../Assets/JS/registro.js"></script>
+        
     </body>
 
 </html>

@@ -47,15 +47,17 @@ if (isset($dataPOST['login'])) {
 } else if (isset($dataPOST['category']) && $dataPOST['category'] == '1') {
     echo showCategories($dataPOST['filter']);
 } else if (isset($dataPOST['addCart'])) {
-    if ($dataPOST['addCart'] == '1') {
-        $product = [
-            "cant" => $dataPOST['cant'],
-            "idProduct" => $dataPOST['idProduct']
-        ];
-        if (addToCart($product)) {
-            echo '{ "add": 1 }';
-        } else {
-            echo '{ "add": 0 }';
+    if (isAccepted($session->getUser(), $session->getPassword())) {
+        if ($dataPOST['addCart'] == '1') {
+            $product = [
+                "cant" => $dataPOST['cant'],
+                "idProduct" => $dataPOST['idProduct']
+            ];
+            if (addToCart($product)) {
+                echo '{ "add": 1 }';
+            } else {
+                echo '{ "add": 0 }';
+            }
         }
     }
 } else if (isset($dataPOST['cart'])) {
@@ -75,6 +77,15 @@ if (isset($dataPOST['login'])) {
         } else if ($dataPOST['cart'] == '4') { //Substrac cant
             $filter = ["idProduct" => $dataPOST['idProduct'], "operation" => '-'];
             echo cambiarCantidad($filter);
+        } else if ($dataPOST['cart'] == '5') { //List cards
+            echo listCards();
+        } else if ($dataPOST['cart'] == '6') { //Purchase
+            $filter = $dataPOST;
+            if (makePurchase($filter)) {
+                echo '{ "error": 0 }';
+            } else {
+                echo '{ "error": 1 }';
+            }
         }
     }
 } else if (isset($dataPOST['addUsers'])) {
@@ -114,4 +125,5 @@ if (isset($dataPOST['login'])) {
     }
 }else {
     $session->closeSession();
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Views/productos.html');
 }

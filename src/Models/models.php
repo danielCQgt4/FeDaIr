@@ -12,9 +12,9 @@ class Connection
 
     public function Connection()
     {
-        $this->host = ['host' => 'sql308.epizy.com', 'dbname' => 'fedair'];
-        $this->usu = 'fedair';
-        $this->pass = 'Fedair2019*';
+        $this->host = ['host' => 'sql308.epizy.com', 'dbname' => 'epiz_24797336_fedair'];
+        $this->usu = 'epiz_24797336';
+        $this->pass = 'vb0KOPl63P09E';
         $this->url = 'mysql:host=' . $this->host['host'] . ';dbname=' . $this->host['dbname'];
     }
 
@@ -22,9 +22,13 @@ class Connection
     public function createConnection()
     {
         try {
+            //error_reporting(E_ERROR | E_PARSE);
             $this->conn = new mysqli($this->host['host'], $this->usu, $this->pass, $this->host['dbname']);
-            $this->conn->set_charset('utf8');
-            return $this->conn;
+            if ($this->conn != null) {
+                $this->conn->set_charset('utf8');
+                return $this->conn;
+            }
+            return null;
         } catch (mysqli_sql_exception $exc) {
             return null;
         }

@@ -24,45 +24,23 @@ function isAccepted($user, $pass)
 /* Productos */
 function showCategories($filter)
 {
-    try {
-        $sql = "select * from CategoriaProducto where" .
-            " descripcion like '%" . $filter . "%'";
-        $result = getData($sql);
-        $json = [];
-        if ($result != null && $result->num_rows > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $json[] = $row;
-            }
-        }
-        return json_encode($json);
-    } catch (mysqli_sql_exception $ex) {
-        return "false";
-    }
+    $sql = "select * from CategoriaProducto where" .
+        " descripcion like '%" . $filter . "%'";
+    return getJson($sql);
 }
 
 function showProducts($filter)
 {
-    try {
-        global $session;
-        $sqlPlus = '';
-        if (!empty($_SESSION['idUser'])) {
-            $sqlPlus = ',(select count(*) from carrito where idProducto = p.idProducto and idUsuario = ' . $session->getIdUser() . ') as onCart';
-        }
-        $sql = "select idProducto,nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto " . $sqlPlus . " from Producto p where" .
-            " (nombre like '%" . $filter['filter'] . "%'
-             or descripcion like '%" . $filter['filter'] .
-            "%' or precio like '%" . $filter['filter'] . "%') " . $filter['category'];
-        $result = getData($sql);
-        $json = [];
-        if ($result != null && $result->num_rows > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $json[] = $row;
-            }
-        }
-        return json_encode($json);
-    } catch (mysqli_sql_exception $ex) {
-        return "false";
+    global $session;
+    $sqlPlus = '';
+    if (!empty($_SESSION['idUser'])) {
+        $sqlPlus = ',(select count(*) from Carrito where idProducto = p.idProducto and idUsuario = ' . $session->getIdUser() . ') as onCart';
     }
+    $sql = "select idProducto,nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto " . $sqlPlus . " from Producto p where" .
+        " (nombre like '%" . $filter['filter'] . "%'
+             or descripcion like '%" . $filter['filter'] .
+        "%' or precio like '%" . $filter['filter'] . "%') " . $filter['category'];
+    return getJson($sql);
 }
 
 function addToCart($product)
@@ -70,14 +48,8 @@ function addToCart($product)
     try {
         global $session;
         if (cantExistencia($product) >= $product['cant']) {
-            $dml = '';
-            if (alreadyOnCart($product)) {
-                $values = $product['idProduct'] . "," . $session->getIdUser() . ',' . $product['cant'];
-                $dml = "update Carrito set ";
-            } else {
-                $values = $product['idProduct'] . "," . $session->getIdUser() . ',' . $product['cant'];
-                $dml = "insert into Carrito (idProducto,idUsuario,cant) values ($values)";
-            }
+            $values = $product['idProduct'] . "," . $session->getIdUser() . ',' . $product['cant'];
+            $dml = "insert into Carrito (idProducto,idUsuario,cant) values ($values)";
             $result = runDml($dml);
             return $result;
         }
@@ -128,24 +100,10 @@ function cantExistencia($product)
 
 function showCarrito()
 {
-    try {
-        global $session;
-        $sql = "select idLineaCarrito,p.idProducto as idProducto,urlImg,nombre,cant,precio 
-        from carrito c, producto p where (c.idProducto = p.idProducto) and idUsuario = " . $session->getIdUser();
-        $result = getData($sql);
-        $json = [];
-        if ($result != null) {
-            if ($result->num_rows >= 1) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $json[] = $row;
-                }
-            }
-            return json_encode($json);
-        }
-        return json_encode(["error" => 1]);
-    } catch (mysqli_sql_exception $ex) {
-        return json_encode(["error" => 1]);
-    }
+    global $session;
+    $sql = "select idLineaCarrito,p.idProducto as idProducto,urlImg,nombre,cant,precio 
+    from Carrito c, Producto p where (c.idProducto = p.idProducto) and idUsuario = " . $session->getIdUser();
+    return getJson($sql);
 }
 
 function deleteItemFromCart($filter)
@@ -201,6 +159,7 @@ function cantidadActual($filter)
     }
 }
 
+
 function addUser($user)
 {
     try {
@@ -212,9 +171,46 @@ function addUser($user)
 
         return false;
     } catch (mysqli_sql_exception $ex) {
+        return 0;
+    }
+}
+//Facturacion
+function beforePurchase()
+{
+    try {
+        global $session;
+        $sql = "select 
+        round(sum(p.precio * c.cant),2) as subTotal,
+        round((sum(p.precio * c.cant)* 0.13),2) as iva,
+        round((sum(p.precio * c.cant)* 0.13) + sum(p.precio * c.cant),2) as total
+        from Carrito c, Producto p where (c.idProducto = p.idProducto) and idUsuario = " . $session->getIdUser();
+        return getJson($sql);
+    } catch (mysqli_sql_exception $th) {
+        return json_encode(['subTotal' => -1, 'iva' => -1, 'total' => -1]);
+    }
+}
+
+function moveToPurchase()
+{
+    try {
+        global $session;
+        $dml = "insert into FacturaDetalle (idFacturaEncabezado,cant,idProducto) 
+            select (select max(idFacturaEncabezado) from FacturaEncabezado where idUsuario = " . $session->getIdUser() . "),cant,idProducto
+            from Carrito where idUsuario = " . $session->getIdUser();
+        $result = runDml($dml);
+        if ($result) {
+            if (updateInvetary()) {
+                $dml = "delete from Carrito where idLineaCarrito > 0 and idUsuario = " . $session->getIdUser();
+                $result = runDml($dml);
+                return $result;
+            }
+        }
+        return false;
+    } catch (mysqli_sql_exception $th) {
         return false;
     }
 }
+
 
 function addTarjeta($tarjeta)
 {
@@ -243,3 +239,71 @@ function showHistorial(){
     $sql = "select * from facturaencabezado where idUsuario = " . $session->getIdUser();
     return getJson($sql);
 }
+
+function updateInvetary()
+{
+    try {
+        $json = showCarrito();
+        $carrito = json_decode($json, true);
+        foreach ($carrito as $item) {
+            $json = cantInventoryByProduct($item);
+            $current = json_decode($json, true);
+            $dml = "update Producto set cantidadDisponible = " . ($current[0]['cantidadDisponible'] - $item['cant']) . ', cantCompras = ' . ($current[0]['cantCompras'] + $item['cant']) . ' where idProducto = ' . $item['idProducto'];
+            runDml($dml);
+        }
+        return true;
+    } catch (mysqli_sql_exception $th) {
+        return false;
+    }
+}
+
+function cantInventoryByProduct($product)
+{
+    try {
+        $sql = "select cantidadDisponible,cantCompras from Producto where idProducto = " . $product['idProducto'];
+        return getJson($sql);
+    } catch (mysqli_sql_exception $ex) {
+        return null;
+    }
+}
+
+function makePurchase($filter)
+{
+    try {
+        global $session;
+        $formaPago = $filter['idFormaPago'];
+        if ($filter['idFormaPago'] < 0) {
+            $formaPago = 'null';
+        }
+        $json = beforePurchase();
+        $calculos = json_decode($json, true);
+        if ($calculos[0]['subTotal'] != '-1' && $calculos[0]['total'] != '-1' && $calculos[0]['iva'] != '-1') {
+            $dml = "insert into FacturaEncabezado (fecha,subTotal,total,impuesto,
+                idUsuario,idFormapago,referencia)
+                values (CURDATE()," . $calculos[0]['subTotal'] . ',' . $calculos[0]['total'] . ',' . $calculos[0]['iva'] .
+                ',' . $session->getIdUser() . ',' . $formaPago . ',' . $filter['referencia'] . ')';
+            $result = runDml($dml);
+            if ($result) {
+                $result = moveToPurchase();
+                return $result;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } catch (mysqli_sql_exception $th) {
+        return false;
+    }
+}
+
+
+/*TEMP*/
+
+function listCards()
+{
+    global $session;
+    $sql = "select idFormaPago,right(numeroTarjeta,4) as numeroTarjeta from FormaPago where idUsuario = " . $session->getIdUser();
+    return getJson($sql);
+}
+
