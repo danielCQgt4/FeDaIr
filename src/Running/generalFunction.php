@@ -174,6 +174,7 @@ function addUser($user)
         return 0;
     }
 }
+//End Fernanda
 
 //Facturacion
 function beforePurchase()
@@ -240,6 +241,7 @@ function showHistorial(){
     $sql = "select * from facturaencabezado where idUsuario = " . $session->getIdUser();
     return getJson($sql);
 } 
+//Fin Fernanda
 
 function updateInvetary()
 {
