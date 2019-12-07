@@ -12,15 +12,9 @@ class Connection
 
     public function Connection()
     {
-<<<<<<< HEAD
         $this->host = ['host' => 'sql308.epizy.com', 'dbname' => 'epiz_24797336_fedair'];
         $this->usu = 'epiz_24797336';
         $this->pass = 'vb0KOPl63P09E';
-=======
-        $this->host = ['host' => 'localhost', 'dbname' => 'fedair'];
-        $this->usu = 'root';
-        $this->pass = '';
->>>>>>> 323afcd9457e9141e6a2907dfb792eaba9fe74c1
         $this->url = 'mysql:host=' . $this->host['host'] . ';dbname=' . $this->host['dbname'];
     }
 
