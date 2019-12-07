@@ -116,9 +116,9 @@ if (isset($dataPOST['login'])) {
         } else {
             echo '{ "add": 0 }';
         }
-    }else if($dataPOST['addTarjeta'] == '2'){
+}else if($dataPOST['addTarjeta'] == '2'){
         echo showTarjeta();
-    }
+}
 } else if (isset($dataPOST['historial'])) {
     if ($dataPOST['historial'] == '1') {
         echo showHistorial();

@@ -238,7 +238,7 @@ function showHistorial(){
     global $session;
     $sql = "select * from facturaencabezado where idUsuario = " . $session->getIdUser();
     return getJson($sql);
-}
+} 
 
 function updateInvetary()
 {

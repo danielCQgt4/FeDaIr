@@ -109,15 +109,15 @@
         text-align: center;
     }
         
-        .izquierdo{
-            width: 100%;
+    .izquierdo{
+        width: 100%;
 
-        }
+    }
         
-        .derecho{
-            width: 100%;
-            margin-left: 0em;
-        }
+    .derecho{
+        width: 100%;
+        margin-left: 0em;
+    }
 }
 
 /*Celular*/
@@ -147,13 +147,13 @@
         text-align: center;
     }
         
-        .izquierdo{
-            width: 100%;
+    .izquierdo{
+        width: 100%;
 
-        }
+    }
         
-        .derecho{
-            width: 100%;
-            margin-left: 0em;
-        }
+    .derecho{
+        width: 100%;
+        margin-left: 0em;
+    }
 }
