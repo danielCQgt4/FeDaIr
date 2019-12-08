@@ -106,4 +106,4 @@ insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompr
 value ('Ropa deportiva', 'Conjunto ropa deportiva hombre', 50000, 1000, 0, 'ropadepo.jpg', 7);
 
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
-value ('Tenis', 'Tenis color rojo para correr', 54000, 1100, 0, 'tenis.jpg', 7);
+value ('Tenis', 'Tenis color rojo para correr', 54000, 1100, 0, 'tenis.png', 7);

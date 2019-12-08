@@ -50,7 +50,7 @@
         viewMoreContent.setAttribute('class', 'position-relative view-more-content');
         var viewMoreImg = newDOM('div');//as parent
         viewMoreImg.setAttribute('class', 'view-more-img');
-        viewMoreImg.setAttribute('style', 'background: url(/Assets/IMG/' + productShowing[i].urlImg + ') no-repeat;background-size: contain;background-position: center;');
+        viewMoreImg.setAttribute('style', 'background: url(/Assets/IMG/ProductsIMG/' + productShowing[i].urlImg + ') no-repeat;background-size: contain;background-position: center;');
         var viewMoreInfo = newDOM('div'),//as parent
             title = newDOM('h5'),
             descripcion = newDOM('p');
@@ -124,7 +124,7 @@
         divCarta.setAttribute('class', 'carta');
         var divIMG = newDOM('div');
         divIMG.setAttribute('class', 'carta-image');
-        divIMG.setAttribute('style', 'background: url(/Assets/IMG/' + productShowing[i].urlImg + ') no-repeat;background-size: contain;background-position: center center;');
+        divIMG.setAttribute('style', 'background: url(/Assets/IMG/ProductsIMG/' + productShowing[i].urlImg + ') no-repeat;background-size: contain;background-position: center center;');
         var divBody = newDOM('div'),
             title = newDOM('h4'),
             text = newDOM('p');

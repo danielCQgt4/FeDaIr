@@ -259,7 +259,7 @@
                 divCartItem.appendChild(btnDeleteCartItem);
                 var imgCartItem = newDOM('div');
                 imgCartItem.setAttribute('class', 'cart-item-img'); //as parent
-                imgCartItem.setAttribute('style', 'background: url(/Assets/IMG/' + data.urlImg + ') no-repeat;background-size: contain;background-position: center center;');
+                imgCartItem.setAttribute('style', 'background: url(/Assets/IMG/ProductsIMG/' + data.urlImg + ') no-repeat;background-size: contain;background-position: center center;');
                 divCartItem.appendChild(imgCartItem);
                 var cartItemName = newDOM('p');
                 cartItemName.setAttribute('class', 'cart-item-name'); //as parent
