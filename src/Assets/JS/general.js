@@ -49,6 +49,14 @@ function toggle(element, time) {
     }
 }
 
+function inputFail(e,type){
+    if (type){
+        e.style = "border: #ff0000 solid 1px;";
+    }else{
+        e.style = "";
+    }
+}
+
 function removeMSG(idElement) {
     if (document.getElementById(idElement) != undefined || document.getElementById(idElement) != null) {
         var element = document.getElementById(idElement);
@@ -163,7 +171,7 @@ function errorMessage(text, parent) {
     var error_msg = document.createElement('div');
     var textNode = document.createTextNode(text);
     var btnExit = document.createElement('input');
-    error_msg.setAttribute('class', 'error-msg border-r-8 p-1');
+    error_msg.setAttribute('class', 'error-msg border-r-8 p-1 mb');
     error_msg.setAttribute('id', 'error-msg');
     error_msg.appendChild(textNode);
     btnExit.addEventListener('click', function () {

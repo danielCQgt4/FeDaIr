@@ -21,8 +21,8 @@
                 if (json.status == '1') {
                     window.location.href = "/Views/productos.html";
                 } else {
-                    user.style = "border: #ff0000 solid 1px;";
-                    pass.style = "border: #ff0000 solid 1px;";
+                    inputFail(user,true);
+                    inputFail(pass,true);
                     var loginForm = document.getElementById('loginForm');
                     errorMessage('Error al iniciar sesion', loginForm);
                 }
