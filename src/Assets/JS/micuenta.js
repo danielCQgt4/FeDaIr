@@ -134,6 +134,7 @@
                                 btnAction.setAttribute('class', 'btn btn-accent d-block w-90 box-center-h');
                                 btnAction.appendChild(newTextNode('Ver mas'));
                                 celda1.appendChild(newTextNode(json[i].idFacturaEncabezado));
+                                celda1.setAttribute('class', 'table-id');
                                 celda2.appendChild(newTextNode(json[i].fecha));
                                 celda3.appendChild(newTextNode(json[i].subTotal));
                                 celda4.appendChild(newTextNode(json[i].total));
