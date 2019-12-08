@@ -26,6 +26,10 @@ if (isset($dataPOST['login'])) {
         } else {
             echo '{ "accept":0 }';
         }
+    } else if ($dataPOST['login'] == '3') {
+        $accept = isAccepted($dataPOST['user'], $dataPOST['pass']);
+        $filter = ['access' => $accept ? '1' : '0'];
+        echo listApartados($filter);
     }
 } else if (isset($dataPOST['product'])) {
     if ($dataPOST['product'] == '1') {
@@ -89,41 +93,41 @@ if (isset($dataPOST['login'])) {
         }
     }
 } else if (isset($dataPOST['addUsers'])) {
-        if ($dataPOST['addUsers'] == '1') {
-            $user = [
-                "cedula" => $dataPOST['cedula'],
-                "usuario" => $dataPOST['usuario'],
-                "contra" => $dataPOST['contra'],
-                "nombre" => $dataPOST['nombre'],
-                "telefono" => $dataPOST['telefono']
-            ];
-         
-            if (addUser($user)) {
-                echo '{ "add": 1 }';
-            } else {
-                echo '{ "add": 0 }';
-            }
+    if ($dataPOST['addUsers'] == '1') {
+        $user = [
+            "cedula" => $dataPOST['cedula'],
+            "usuario" => $dataPOST['usuario'],
+            "contra" => $dataPOST['contra'],
+            "nombre" => $dataPOST['nombre'],
+            "telefono" => $dataPOST['telefono']
+        ];
+
+        if (addUser($user)) {
+            echo '{ "add": 1 }';
+        } else {
+            echo '{ "add": 0 }';
         }
+    }
 } else if (isset($dataPOST['addTarjeta'])) {
     if ($dataPOST['addTarjeta'] == '1') {
         $tarjeta = [
             "tarjeta" => $dataPOST['tarjeta'],
             "tipo" => $dataPOST['tipo']
         ];
-     
+
         if (addTarjeta($tarjeta)) {
             echo '{ "add": 1 }';
         } else {
             echo '{ "add": 0 }';
         }
-}else if($dataPOST['addTarjeta'] == '2'){
+    } else if ($dataPOST['addTarjeta'] == '2') {
         echo showTarjeta();
-}
+    }
 } else if (isset($dataPOST['historial'])) {
     if ($dataPOST['historial'] == '1') {
         echo showHistorial();
     }
-}else {
+} else {
     $session->closeSession();
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Views/productos.html');
 }
