@@ -241,22 +241,6 @@ function newTextNode(text) {
 var btnAction = document.getElementById('btn-action'),
     navList = document.getElementById('nav-list'),
     apiURL = '../API/api.php';
-//TEMP
-//ulCart = document.getElementById('cart');
-
-/*
-<li class="nav-item">
-    <a href="../Views/productos.html" class="d-block text-white w-100 h-100">
-        Productos
-    </a>
-</li>
-
-<li class="nav-item nav-item-cart">
-    <a id="cart" href="#" class="d-block text-white w-100 h-100">
-        Carrito
-    </a>
-</li>
-*/
 
 function newApartado(data) {
     var li = newDOM('li');
@@ -361,11 +345,6 @@ btnAction.addEventListener('click', function () {
         cartRedirect();
     }
 });
-
-//TEMP
-/*ulCart.addEventListener('click', function () {
-    cartRedirect();
-});*/
 
 listApartados();
 
