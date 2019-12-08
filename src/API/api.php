@@ -28,7 +28,7 @@ if (isset($dataPOST['login'])) {
         }
     } else if ($dataPOST['login'] == '3') {
         if (!empty($_SESSION['user']) && !empty($_SESSION['pass'])) {
-            $accept = isAccepted($dataPOST['user'], $dataPOST['pass']);
+            $accept = isAccepted($session->getUser(), $session->getPassword());
             $filter = ['access' => $accept ? '1' : '0'];
             echo listApartados($filter);
         } else {

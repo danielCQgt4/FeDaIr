@@ -1,11 +1,11 @@
 -- Scripts for FideStore
-insert into Menu (nombre,url,estado,accPublic,accPriv,accBoth) values 
-('Productos','productos.html',1,1,1,1),
-('Acerca','acerca.html',1,1,1,1),
-('Carrito','carrito.html',1,1,1,1),
-('Iniciar sesion','login.html',1,1,0,0),
-('Mi cuenta','micuenta.html',1,0,1,0),
-('Registrarse','registro.html',1,1,0,0);
+insert into Menu (nombre,url,estado,accPublic,accPriv,accBoth,logNeeded) values 
+('Productos','productos.html',1,1,1,1,0),
+('Acerca','acerca.html',1,1,1,1,0),
+('Carrito','carrito.html',1,1,1,1,1),
+('Iniciar sesion','login.html',1,1,0,0,0),
+('Mi cuenta','micuenta.html',1,0,1,0,1),
+('Registrarse','registro.html',1,1,0,0,0);
 
 insert into Perfil_Menu values 
 (1,1),

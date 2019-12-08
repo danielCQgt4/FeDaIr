@@ -262,7 +262,7 @@ function newApartado(data) {
     var li = newDOM('li');
     li.setAttribute('class', 'nav-item');
     var a = newDOM('a');
-    if (data.priv == 1 && data.pub == 1) {
+    if (data.logNeeded == 1) {
         a.setAttribute('href', '#');
         //Event
         a.addEventListener('click', function () {
