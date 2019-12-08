@@ -6,8 +6,10 @@ insert into CategoriaProducto (descripcion) valuess
 -- Productos
 insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
 values ('Computadora','Computadora todo en 1, monitor y componentes',450000,5,0,'temp_pc.png',1);
+
 insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
 values ('Bagels','Disfruta de los exquisitos bagels, crujientes',5500,5,0,'temp_bagel.png',3);
+
 insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('Caja de herramientas','Combo de varias herramientas (martillo,desatornillador,pinzas,etc)',15000,15,0,
 'temp_herramientas.png',6);
@@ -43,4 +45,34 @@ value ('Juego de comedor', 'Comedor de madera', 250000, 1000, 0, 'comedor.jpg', 
 
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Mini Bar', 'Mini bar de madera fina', 990000, 1000, 0, 'minibar.jpg', 2);
+
+-- Electronico
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Laptop', 'Laptop MacBook Air', 900000, 2500, 0, 'laptop.png', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Cámara', 'Cámara Nikon Coolpix', 850000, 2000, 0, 'camara.jpg', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Teclado', 'Teclado inalámbrico', 250000, 5000, 0, 'teclado.jpg', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Mouse', 'Mouse inalámbrico', 150000, 2500, 0, 'mouse.png', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('TV', 'Pantalla Plasma', 500000, 6000, 0, 'tv.jpg', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Celulares', 'iPhone X', 1000000, 10000, 0, 'celular.png', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Audífonos', 'Audífonos inalámbricos Beats Studio3', 10000, 5000, 0, 'audios.jpg', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Consola', 'PS4', 550000, 4000, 0, 'ps4.png', 4);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Impresora', 'Impresora Epson L850', 450000, 2500, 0, 'impresora.jpg', 4);
+
 
