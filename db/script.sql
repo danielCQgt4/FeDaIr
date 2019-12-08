@@ -78,8 +78,6 @@ value ('Impresora', 'Impresora Epson L850', 450000, 2500, 0, 'impresora.jpg', 4)
 
 -- Ropa by Irvin
 
-ROPA
-
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Camisa manga larga', 'Camisa Manga larga azul', 5000, 10000, 0, 'camisa.jpg', 7);
 
