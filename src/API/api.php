@@ -27,9 +27,14 @@ if (isset($dataPOST['login'])) {
             echo '{ "accept":0 }';
         }
     } else if ($dataPOST['login'] == '3') {
-        $accept = isAccepted($dataPOST['user'], $dataPOST['pass']);
-        $filter = ['access' => $accept ? '1' : '0'];
-        echo listApartados($filter);
+        if (!empty($_SESSION['user']) && !empty($_SESSION['pass'])) {
+            $accept = isAccepted($dataPOST['user'], $dataPOST['pass']);
+            $filter = ['access' => $accept ? '1' : '0'];
+            echo listApartados($filter);
+        } else {
+            $filter = ['access' => '0'];
+            echo listApartados($filter);
+        }
     }
 } else if (isset($dataPOST['product'])) {
     if ($dataPOST['product'] == '1') {

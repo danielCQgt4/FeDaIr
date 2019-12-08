@@ -305,13 +305,15 @@ function listApartados($filter)
 {
     global $session;
     if ($filter['access'] == 1) {
-        $sql = "select m.nombre as nombre,m.url as urlApartago from Perfil_Menu pm,Perfil p, Menu m
+        $sql = "select m.nombre as nombre,m.url as urlApartago,m.accPriv as priv, m.accPublic as pub
+        from Perfil_Menu pm,Perfil p, Menu m
         where (pm.idPerfil = p.idPerfil) and (pm.idMenu = m.idMenu) and 
         (((m.accPublic = 0) and (m.accPriv = 1)) or (m.accBoth = 1)) and 
         pm.idPerfil = " . $session->getIdPerfil();
         return getJson($sql);
     } else {
-        $sql = "select m.nombre as nombre,m.url as urlApartago from Perfil_Menu pm,Perfil p, Menu m
+        $sql = "select m.nombre as nombre,m.url as urlApartago,m.accPriv as priv, m.accPublic as pub
+        from Perfil_Menu pm,Perfil p, Menu m
         where (pm.idPerfil = p.idPerfil) and (pm.idMenu = m.idMenu) and 
         (((m.accPublic = 1) and (m.accPriv = 0)) or (m.accBoth = 1)) and 
         pm.idPerfil = 1";

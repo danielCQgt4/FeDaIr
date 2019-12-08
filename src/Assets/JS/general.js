@@ -240,8 +240,67 @@ function newTextNode(text) {
 //Funciones de FIDESTORE
 var btnAction = document.getElementById('btn-action'),
     navList = document.getElementById('nav-list'),
-    apiURL = '../API/api.php',
-    ulCart = document.getElementById('cart');
+    apiURL = '../API/api.php';
+//TEMP
+//ulCart = document.getElementById('cart');
+
+/*
+<li class="nav-item">
+    <a href="../Views/productos.html" class="d-block text-white w-100 h-100">
+        Productos
+    </a>
+</li>
+
+<li class="nav-item nav-item-cart">
+    <a id="cart" href="#" class="d-block text-white w-100 h-100">
+        Carrito
+    </a>
+</li>
+*/
+
+function newApartado(data) {
+    var li = newDOM('li');
+    li.setAttribute('class', 'nav-item');
+    var a = newDOM('a');
+    if (data.priv == 1 && data.pub == 1) {
+        a.setAttribute('href', '#');
+        //Event
+        a.addEventListener('click', function () {
+            acceptedEntrance(function (result) {
+                if (result) {
+                    window.location.href = "/Views/" + data.urlApartago;
+                } else {
+                    var msg = dialogConfirm('Inicia sesion primero', function (result) {
+                        if (result) {
+                            loginRedirect();
+                        } else {
+                            removeMSG(msg.id);
+                        }
+                    });
+                }
+            });
+        });
+    } else {
+        a.setAttribute('href', '../Views/' + data.urlApartago);
+    }
+    a.setAttribute('class', 'd-block text-white w-100 h-100');
+    a.appendChild(newTextNode(data.nombre));
+    li.appendChild(a);
+    return li;
+}
+
+function listApartados() {
+    postAjaxRequest(apiURL, 'login=3', function (json) {
+        if (json.errorBody != 'Error' || json.error != '') {
+            for (i = 0; i < json.length; i++) {
+                var li = newApartado(json[i]);
+                navList.appendChild(li);
+            }
+        } else {
+            dialogError('Se ha producido un error de comunicacion');
+        }
+    });
+}
 
 function acceptedEntrance(cb) {
     postAjaxRequest(apiURL, 'login=2', function (json) {
@@ -303,9 +362,12 @@ btnAction.addEventListener('click', function () {
     }
 });
 
-ulCart.addEventListener('click', function () {
+//TEMP
+/*ulCart.addEventListener('click', function () {
     cartRedirect();
-});
+});*/
+
+listApartados();
 
 
 
