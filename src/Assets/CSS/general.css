@@ -66,22 +66,22 @@
 }
 
 /*Div*/
-.principal{
+
+.principal {
     width: 100%;
     margin: 1em;
     text-align: center;
 }
-    
-    .izquierdo{
-    width: 35%; 
-    float:left;
-    }
-    
-    .derecho{
-        width: 80%;
-        margin-left: 40em;
- 
-    }
+
+.izquierdo {
+    width: 35%;
+    float: left;
+}
+
+.derecho {
+    width: 55%;
+    margin-left: 40%;
+}
 
 /*Tableta*/
 
@@ -103,18 +103,15 @@
         background-color: #007caa;
         color: #fff;
     }
-
-    .principal{
+    .principal {
         width: 100%;
         text-align: center;
     }
-        
-    .izquierdo{
+    .izquierdo {
         width: 100%;
-
     }
-        
-    .derecho{
+    .derecho {
+        margin-top: 1.5em;
         width: 100%;
         margin-left: 0em;
     }
@@ -141,18 +138,15 @@
         background-color: #007caa;
         color: #fff;
     }
-
-    .principal{
+    .principal {
         width: 100%;
         text-align: center;
     }
-        
-    .izquierdo{
+    .izquierdo {
         width: 100%;
-
     }
-        
-    .derecho{
+    .derecho {
+        margin-top: 1.5em;
         width: 100%;
         margin-left: 0em;
     }

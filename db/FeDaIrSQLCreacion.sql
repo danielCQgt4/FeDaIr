@@ -113,6 +113,8 @@ create table FacturaEncabezado(
     referencia varchar(15),
     constraint idCliente_FacturaEncabezado_fk foreign key(idUsuario) references Usuario(idUsuario),
     constraint idFormapago_FacturaEncabezado_fk foreign key(idFormapago) references FormaPago(idFormapago)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
 );
 
 create table FacturaDetalle(
