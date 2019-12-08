@@ -2,6 +2,7 @@
 -- Categorias
 insert into CategoriaProducto (descripcion) valuess 
 ('Tecnologico'),('Hogar'),('Comida'),('Electronico'),('Comunicacion'),('Ferreteria');
+insert into CategoriaProducto (descripcion) values ('Ropa');
 
 -- Productos
 insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
@@ -46,7 +47,7 @@ value ('Juego de comedor', 'Comedor de madera', 250000, 1000, 0, 'comedor.jpg', 
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Mini Bar', 'Mini bar de madera fina', 990000, 1000, 0, 'minibar.jpg', 2);
 
--- Electronico
+-- Electronico by Irvin
 
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Laptop', 'Laptop MacBook Air', 900000, 2500, 0, 'laptop.png', 4);
@@ -75,4 +76,36 @@ value ('Consola', 'PS4', 550000, 4000, 0, 'ps4.png', 4);
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Impresora', 'Impresora Epson L850', 450000, 2500, 0, 'impresora.jpg', 4);
 
+-- Ropa by Irvin
 
+ROPA
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Camisa manga larga', 'Camisa Manga larga azul', 5000, 10000, 0, 'camisa.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Pantalones', 'Pantalón negro', 6000, 1000, 0, 'pantalones.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Zapatos', 'Zapatos de vestir', 15000, 3040, 0, 'zapatos.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Ropa interior', 'Boxer color gris', 5000, 1000, 0, 'boxer.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Medias', 'Medias con dibujos', 4000, 1500, 0, 'medias.png', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Abrigos', 'Abrigo color gris mujer', 20000, 1000, 0, 'abrigo.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Blusas', 'Blusa color blanco', 5000, 200, 0, 'blusa.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Camisa', 'Camisa normal hombre', 5660, 300, 0, 'camisacorta.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Ropa deportiva', 'Conjunto ropa deportiva hombre', 50000, 1000, 0, 'ropadepo.jpg', 7);
+
+insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
+value ('Tenis', 'Tenis color rojo para correr', 54000, 1100, 0, 'tenis.jpg', 7);
