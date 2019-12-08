@@ -165,7 +165,7 @@ function cantidadActual($filter)
 function addUser($user)
 {
     try {
-        $values = $user['cedula'] . ",'" . $user['usuario'] . "',md5(' " . $user['contra'] . "'),'"
+        $values = $user['cedula'] . ",'" . $user['usuario'] . "',md5('" . $user['contra'] . "'),'"
             . $user['nombre'] . "','" . $user['telefono'] . "',1";
         $dml = "insert into Usuario (cedula,usuario,contra,nombre,telefono,idPerfil) values ($values)";
         $result = runDml($dml);

@@ -106,7 +106,6 @@ if (isset($dataPOST['login'])) {
             "nombre" => $dataPOST['nombre'],
             "telefono" => $dataPOST['telefono']
         ];
-
         if (addUser($user)) {
             echo '{ "add": 1 }';
         } else {
