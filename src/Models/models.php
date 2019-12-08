@@ -103,6 +103,16 @@ class Session
         $_SESSION['idUser'] = $idUser;
     }
 
+    public function setIdPerfil($idPerfil)
+    {
+        $_SESSION['idPerfil'] = $idPerfil;
+    }
+
+    public function getIdPerfil()
+    {
+        return $_SESSION['idPerfil'];
+    }
+
     public function setUser($pass, $usu)
     {
         $_SESSION['user'] = $usu;
