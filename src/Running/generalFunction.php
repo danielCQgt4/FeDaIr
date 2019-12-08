@@ -167,7 +167,7 @@ function addUser($user)
     try {
         $values = $user['cedula'] . ",'" . $user['usuario'] . "',md5(' " . $user['contra'] . "'),'"
             . $user['nombre'] . "','" . $user['telefono'] . "',1";
-        $dml = "insert into usuario (cedula,usuario,contra,nombre,telefono,idPerfil) values ($values)";
+        $dml = "insert into Usuario (cedula,usuario,contra,nombre,telefono,idPerfil) values ($values)";
         $result = runDml($dml);
         return $result;
     } catch (mysqli_sql_exception $ex) {
@@ -186,7 +186,7 @@ function addTarjeta($tarjeta)
     try {
         global $session;
         $values = '"' . $session->getIdUser() . '","' . $tarjeta['tarjeta'] . '","' . $tarjeta['tipo'] . '"';
-        $dml = "insert into formapago (idusuario,numerotarjeta,tipo) values ($values)";
+        $dml = "insert into FormaPago (idusuario,numerotarjeta,tipo) values ($values)";
         $result = runDml($dml);
         return $result;
     } catch (mysqli_sql_exception $ex) {
