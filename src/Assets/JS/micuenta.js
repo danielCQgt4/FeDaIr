@@ -54,15 +54,33 @@
                     inputFail(tarjeta, true);
                     add = false;
                 } else {
-                    inputFail(tarjeta, false);
-                    add = true;
+                    for (i = 0; i < tarjeta.value.length; i++) {
+                        if (tarjeta.value.charAt(i) == 0 ||
+                            tarjeta.value.charAt(i) == 1 ||
+                            tarjeta.value.charAt(i) == 2 ||
+                            tarjeta.value.charAt(i) == 3 ||
+                            tarjeta.value.charAt(i) == 4 ||
+                            tarjeta.value.charAt(i) == 5 ||
+                            tarjeta.value.charAt(i) == 6 ||
+                            tarjeta.value.charAt(i) == 7 ||
+                            tarjeta.value.charAt(i) == 8 ||
+                            tarjeta.value.charAt(i) == 9) {
+                            inputFail(tarjeta, false);
+                            add = true;
+                        } else {
+                            errorMessage('Corrige la informacion', registerForm);
+                            inputFail(tarjeta, true);
+                            add = false;
+                            break;
+                        }
+                    }
                 }
                 for (i = 0; i < tipo.length; i++) {
-                    if (tipo[i].checked && add) {
+                    if (tipo[i].checked) {
                         add = true;
                         break;
                     } else {
-                        errorMessage('Seleccione un tipo de tarjeta', registerForm);
+                        errorMessage('Corrige la informacion', registerForm);
                         add = false;
                     }
                 }
@@ -86,6 +104,7 @@
                             tabla.appendChild(fila);
                         } else {
                             for (var i = 0; i < json.length; i++) {
+                                const obj = json[i];
                                 var fila = newDOM("tr");
                                 var celda1 = newDOM("td");
                                 var celda2 = newDOM("td");
@@ -93,6 +112,26 @@
                                 var btnAccion = newDOM('button');
                                 btnAccion.setAttribute('class', 'btn btn-danger d-block w-90 box-center-h');
                                 btnAccion.appendChild(newTextNode("Eliminar"));
+                                btnAccion.addEventListener('click', function () {
+                                    var msg = dialogConfirm('Esta segur@ de eliminar esta tarjeta', function (result) {
+                                        if (result) {
+                                            postAjaxRequest(apiURL, 'addTarjeta=3&idFormaPago=' + obj.idFormaPago, function (json) {
+                                                if (json.errorBody != 'Error' || json.error != '') {
+                                                    if (json.delete == 1) {
+                                                        mostrarTarjetas();
+                                                        removeMSG(msg.id);
+                                                    } else {
+                                                        removeMSG(msg.id);
+                                                        dialogError('!Error, no se pudo eliminar');
+                                                    }
+                                                } else {
+                                                    removeMSG(msg.id);
+                                                    dialogError('!Error');
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
                                 celda1.appendChild(newTextNode(json[i].numeroTarjeta));
                                 celda2.appendChild(newTextNode(json[i].tipo));
                                 celda3.appendChild(btnAccion);

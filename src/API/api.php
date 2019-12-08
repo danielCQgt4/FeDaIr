@@ -114,19 +114,30 @@ if (isset($dataPOST['login'])) {
         }
     }
 } else if (isset($dataPOST['addTarjeta'])) {
-    if ($dataPOST['addTarjeta'] == '1') {
-        $tarjeta = [
-            "tarjeta" => $dataPOST['tarjeta'],
-            "tipo" => $dataPOST['tipo']
-        ];
+    if (isAccepted($session->getUser(), $session->getPassword())) {
+        if ($dataPOST['addTarjeta'] == '1') {
+            $tarjeta = [
+                "tarjeta" => $dataPOST['tarjeta'],
+                "tipo" => $dataPOST['tipo']
+            ];
 
-        if (addTarjeta($tarjeta)) {
-            echo '{ "add": 1 }';
-        } else {
-            echo '{ "add": 0 }';
+            if (addTarjeta($tarjeta)) {
+                echo '{ "add": 1 }';
+            } else {
+                echo '{ "add": 0 }';
+            }
+        } else if ($dataPOST['addTarjeta'] == '2') {
+            echo showTarjeta();
+        } else if ($dataPOST['addTarjeta'] == '3') {
+            $filter = [
+                "idFormaPago" => $dataPOST['idFormaPago']
+            ];
+            if (deleteTarjeta($filter)) {
+                echo '{ "delete": 1 }';
+            } else {
+                echo '{ "delete": 0 }';
+            }
         }
-    } else if ($dataPOST['addTarjeta'] == '2') {
-        echo showTarjeta();
     }
 } else if (isset($dataPOST['historial'])) {
     if ($dataPOST['historial'] == '1') {

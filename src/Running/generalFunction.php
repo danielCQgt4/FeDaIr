@@ -179,13 +179,23 @@ function addTarjeta($tarjeta)
 {
     try {
         global $session;
-        $dml = '';
         $values = '"' . $session->getIdUser() . '","' . $tarjeta['tarjeta'] . '","' . $tarjeta['tipo'] . '"';
         $dml = "insert into formapago (idusuario,numerotarjeta,tipo) values ($values)";
         $result = runDml($dml);
         return $result;
-
+    } catch (mysqli_sql_exception $ex) {
         return false;
+    }
+}
+
+function deleteTarjeta($filter)
+{
+    try {
+        global $session;
+        $dml = "delete from FormaPago where idFormaPago = " . $filter['idFormaPago']
+            . " and idUsuario = " . $session->getIdUser();
+        $result = runDml($dml);
+        return $result;
     } catch (mysqli_sql_exception $ex) {
         return false;
     }
