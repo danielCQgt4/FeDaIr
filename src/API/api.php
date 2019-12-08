@@ -112,6 +112,9 @@ if (isset($dataPOST['login'])) {
         } else {
             echo '{ "add": 0 }';
         }
+    } else if ($dataPOST['addUsers'] == '2') {
+        $filter = ["userTemp" => $dataPOST['userTemp']];
+        echo controlUser($filter);
     }
 } else if (isset($dataPOST['addTarjeta'])) {
     if (isAccepted($session->getUser(), $session->getPassword())) {

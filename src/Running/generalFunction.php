@@ -175,6 +175,12 @@ function addUser($user)
     }
 }
 
+function controlUser($filter)
+{
+    $sql = "select count(*) as valid from Usuario where usuario = '" . $filter['userTemp'] . "'";
+    return getJson($sql);
+}
+
 function addTarjeta($tarjeta)
 {
     try {

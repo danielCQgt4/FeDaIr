@@ -8,10 +8,14 @@
     var telefono = document.getElementById('telefono');
     var pass = document.getElementById('password');
     var passC = document.getElementById('password_confirmation');
+    var userErrorInfo = document.getElementById('idErrorInfo');
     var errors = {
         cant: 0,
-        msg: ''
+        msg: '',
+        userValid: false
     };
+
+    usuario.addEventListener('keyup', validateUser);
 
     btnRegistro.addEventListener('click', registro);
     document.addEventListener('keyup', function (e) {
@@ -21,20 +25,24 @@
     });
 
     function registro() {
+        var loginForm = document.getElementById('loginForm');
         if (validaciones()) {
             var data = 'addUsers=1&cedula=' + cedula.value + '&usuario=' + usuario.value + '&contra=' + pass.value + '&nombre=' + nombre.value + '&telefono=' + telefono.value;
             console.log(data);
-            postAjaxRequest(apiURL, data, function (result) {
-                if (result != 'Error' || result != '[]') {
-                    var json = result;
-                    if (json.add == 1) {
-                        window.location.href = "/Views/login.html";
-                    } else {
-                        var loginForm = document.getElementById('loginForm');
-                        errorMessage('Error al Registrarse', loginForm);
+            if (errors.userValid) {
+                postAjaxRequest(apiURL, data, function (json) {
+                    if (json.errorBody != 'Error' || json.error != '') {
+                        if (json.add == 1) {
+                            window.location.href = "/Views/login.html";
+                        } else {
+                            var loginForm = document.getElementById('loginForm');
+                            errorMessage('Error al Registrarse', loginForm);
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                errorMessage('El usuario ya esta en uso', loginForm);
+            }
         } else {
             errorMessage(errors.msg, loginForm);
         }
@@ -63,7 +71,7 @@
 
         if ((pass.value != passC.value) || (pass.value == '' || passC.value == '')) {
             errors.cant++;
-            errors.msg = (pass.value != passC.value)?'Las contraseñas deben ser iguales':'Las contraseñas deben ser validas';
+            errors.msg = (pass.value != passC.value) ? 'Las contraseñas deben ser iguales' : 'Las contraseñas deben ser validas';
             inputFail(passC, true);
             inputFail(pass, true);
         } else {
@@ -77,6 +85,31 @@
         }
         return errors.cant == 0;
     }
+
+    function validateUser() {
+        if (usuario.value != '') {
+            postAjaxRequest(apiURL, 'addUsers=2&userTemp=' + usuario.value, function (json) {
+                if (json.errorBody != 'Error' || json.error != '') {
+                    if (json[0].valid == 1) {
+                        inputFail(usuario, true);
+                        userErrorInfo.style.display = "block";
+                        errors.userValid = false;
+                        btnRegistro.style.display = 'none';
+                    } else {
+                        errors.userValid = true;
+                        inputFail(usuario, false);
+                        userErrorInfo.style.display = "none";
+                        btnRegistro.style.display = 'block';
+                    }
+                }
+            });
+        } else {
+            inputFail(usuario, false);
+            userErrorInfo.style.display = "none";
+        }
+    }
+
+    validateUser();
 })();
 
 
