@@ -18,7 +18,7 @@ insert into Perfil_Menu values
 (1,7);
 
 -- Categorias
-insert into CategoriaProducto (descripcion) valuess 
+insert into CategoriaProducto (descripcion) values 
 ('Tecnologico'),('Hogar'),('Comida'),('Electronico'),('Comunicacion'),('Ferreteria');
 insert into CategoriaProducto (descripcion) values ('Ropa');
 
@@ -29,11 +29,11 @@ values ('Computadora','Computadora todo en 1, monitor y componentes',450000,5,0,
 insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
 values ('Bagels','Disfruta de los exquisitos bagels, crujientes',5500,5,0,'temp_bagel.png',3);
 
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('Caja de herramientas','Combo de varias herramientas (martillo,desatornillador,pinzas,etc)',15000,15,0,
 'temp_herramientas.png',6);
 
---Hogar by Irvin
+-- Hogar by Irvin
 
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Refrigeradora', 'Refrigeradora LG, ultimo modelo', 500000, 5000, 0, 'refrigeradora.jpg', 2);
