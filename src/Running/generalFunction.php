@@ -321,7 +321,6 @@ function listApartados($filter)
     }
 }
 
-/*TEMP*/
 function listCards()
 {
     global $session;

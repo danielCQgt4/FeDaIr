@@ -252,7 +252,7 @@ function newApartado(data) {
         a.addEventListener('click', function () {
             acceptedEntrance(function (result) {
                 if (result) {
-                    window.location.href = "/Views/" + data.urlApartago;
+                    window.location.href = data.urlApartago;
                 } else {
                     var msg = dialogConfirm('Inicia sesion primero', function (result) {
                         if (result) {
@@ -265,7 +265,7 @@ function newApartado(data) {
             });
         });
     } else {
-        a.setAttribute('href', '../Views/' + data.urlApartago);
+        a.setAttribute('href', '..' + data.urlApartago);
     }
     a.setAttribute('class', 'd-block text-white w-100 h-100');
     a.appendChild(newTextNode(data.nombre));
