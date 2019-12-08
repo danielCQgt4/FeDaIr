@@ -130,22 +130,23 @@
                                 var celda2 = newDOM("td");
                                 var celda3 = newDOM("td");
                                 var celda4 = newDOM("td");
-                                var textoCelda1 = document.createTextNode(json[i].idFacturaEncabezado);
-                                var textoCelda2 = document.createTextNode(json[i].fecha);
-                                var textoCelda3 = document.createTextNode(json[i].subTotal);
-                                var textoCelda4 = document.createTextNode(json[i].total);
-                                celda1.appendChild(textoCelda1);
-                                celda2.appendChild(textoCelda2);
-                                celda3.appendChild(textoCelda3);
-                                celda4.appendChild(textoCelda4);
+                                var btnAction = newDOM('button');
+                                btnAction.setAttribute('class', 'btn btn-accent d-block w-90 box-center-h');
+                                btnAction.appendChild(newTextNode('Ver mas'));
+                                celda1.appendChild(newTextNode(json[i].idFacturaEncabezado));
+                                celda2.appendChild(newTextNode(json[i].fecha));
+                                celda3.appendChild(newTextNode(json[i].subTotal));
+                                celda4.appendChild(newTextNode(json[i].total));
                                 fila.appendChild(celda1);
                                 fila.appendChild(celda2);
                                 fila.appendChild(celda3);
                                 fila.appendChild(celda4);
+                                fila.appendChild(btnAction);
                                 tabla.appendChild(fila);
                             }
                         }
                     } else {
+                        dialogError('Error de comunicacion');
                     }
                 });
             }
