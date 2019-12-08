@@ -34,7 +34,10 @@ create table Menu(
     nombre varchar(35),
     url varchar(100),
     icono varchar(100),
-    estado int(1)
+    estado int(1), -- 1:activo , 0:deshabilitado
+    accPublic int(1), -- 1:si , 0:no
+    accPriv int(1), -- 1:si , 0:no
+    accBoth int(1) -- 1:si , 0:no
 );
 
 create table Perfil(

@@ -163,15 +163,13 @@ function cantidadActual($filter)
 function addUser($user)
 {
     try {
-            $dml = '';
-                $values = '"'.$user['cedula'] . '","' . $user['usuario'] . '",md5(' . $user['contra']. '),"' . $user['nombre']. '","' . $user['telefono']. '",' . '"1"';
-                $dml = "insert into usuario (cedula,usuario,contra,nombre,telefono,idPerfil) values ($values)";
-            $result = runDml($dml);
-            return $result;
-
-        return false;
+        $values = $user['cedula'] . ",'" . $user['usuario'] . "',md5(' ". $user['contra']."'),'" 
+        . $user['nombre']. "','" . $user['telefono']. "',1";
+        $dml = "insert into usuario (cedula,usuario,contra,nombre,telefono,idPerfil) values ($values)";
+        $result = runDml($dml);
+        return $result;
     } catch (mysqli_sql_exception $ex) {
-        return 0;
+        return false;
     }
 }
 //End Fernanda

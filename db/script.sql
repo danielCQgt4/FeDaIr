@@ -1,4 +1,20 @@
 -- Scripts for FideStore
+insert into Menu (nombre,url,estado,accPublic,accPriv,accBoth) values 
+('Productos','productos.html',1,1,1,1),
+('Acerca','acerca.html',1,1,1,1),
+('Carrito','carrito.html',1,1,1,1),
+('login','login.html',1,1,0,0),
+('micuenta','micuenta.html',1,0,1,0),
+('registro','registro.html',1,1,0,0);
+
+insert into Perfil_Menu values 
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6);
+
 -- Categorias
 insert into CategoriaProducto (descripcion) valuess 
 ('Tecnologico'),('Hogar'),('Comida'),('Electronico'),('Comunicacion'),('Ferreteria');
