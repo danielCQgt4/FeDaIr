@@ -1,4 +1,6 @@
 -- Scripts for FideStore
+insert into Perfil (nombre) values ('Usuario');
+
 insert into Menu (nombre,url,estado,accPublic,accPriv,accBoth,logNeeded) values 
 ('Productos','/Views/productos.html',1,1,1,1,0),
 ('Acerca','/Views/acerca.html',1,1,1,1,0),

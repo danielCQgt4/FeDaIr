@@ -49,6 +49,7 @@ create table Perfil(
 create table Perfil_Menu(
 	idPerfil int not null,
     idMenu int not null,
+    constraint idPerfil_idMenu_pk primary key(idPerfil,idMenu),
     constraint idPerfil_Perfil_Menu_fk foreign key(idPerfil) references Perfil(idPerfil),
     constraint idMenu_Perfil_Menu_fk foreign key(idMenu) references Menu(idMenu)
 );

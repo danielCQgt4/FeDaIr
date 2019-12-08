@@ -36,8 +36,9 @@ function getJson($sql)
                 while ($row = mysqli_fetch_assoc($result)) {
                     $json[] = $row;
                 }
+                return json_encode($json);
             }
-            return json_encode($json);
+            return json_encode(["noRecords" => $result->num_rows]);
         }
         return json_encode(["error" => 1]);
     } catch (mysqli_sql_exception $th) {
