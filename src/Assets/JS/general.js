@@ -49,10 +49,10 @@ function toggle(element, time) {
     }
 }
 
-function inputFail(e,type){
-    if (type){
+function inputFail(e, type) {
+    if (type) {
         e.style = "border: #ff0000 solid 1px;";
-    }else{
+    } else {
         e.style = "";
     }
 }
@@ -252,7 +252,7 @@ var btnAction = document.getElementById('btn-action'),
 
 function newApartado(data) {
     var li = newDOM('li');
-    li.setAttribute('class', 'nav-item');
+    li.setAttribute('class', (data.nombre == 'Carrito') ? 'nav-item nav-item-cart' : 'nav-item');
     var a = newDOM('a');
     if (data.logNeeded == 1) {
         a.setAttribute('href', '#');

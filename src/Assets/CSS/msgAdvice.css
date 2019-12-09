@@ -1,15 +1,3 @@
-/*
-<div class="dialog-error-back position-relative d-none" id="dialog-error">
-    <div class="dialog-error box-center-fixed position-relative">
-        <div class="dialog-error-header"></div>
-        <h3 class="dialog-error-msg">Error!</h3>
-        <div class="dialog-error-actions">
-            <input type="button" value="Aceptar" class="btn btn-danger dialog-error-btn-accept">
-        </div>
-    </div>
-</div> 
-*/
-
 .dialog-error-back {
     width: 100%;
     height: 100%;
@@ -45,19 +33,6 @@
 .dialog-error-btn-accept {
     margin-right: .5em;
 }
-
-/*
-<div class="dialog-confirm-back position-relative" id="dialog-confirm">
-    <div class="dialog-confirm box-center-fixed position-relative">
-        <div class="dialog-confirm-header"></div>
-        <h3 class="dialog-confirm-msg">Preguntar algo?</h3>
-        <div class="dialog-confirm-actions">
-            <input type="button" value="Cancelar" class="btn btn-danger dialog-confirm-btn-accept">
-            <input type="button" value="Aceptar" class="btn btn-success dialog-confirm-btn-accept">
-        </div>
-    </div>
-</div>
-*/
 
 .dialog-confirm-back {
     width: 100%;

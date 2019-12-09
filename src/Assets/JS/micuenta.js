@@ -21,6 +21,11 @@
                     guardarTarjeta();
                 }
             });
+            mostrarTarjetas();
+            mostrarHistorial();
+            /*--Cambio--*/
+            areaTarjetas();
+
 
             function guardarTarjeta() {
                 for (i = 0; i < tipo.length; i++) {
@@ -101,6 +106,7 @@
                             celda1.appendChild(newTextNode("Sin Registros"));
                             fila.appendChild(newDOM('td'));
                             fila.appendChild(celda1);
+                            fila.appendChild(newDOM('td'));
                             tabla.appendChild(fila);
                         } else {
                             for (var i = 0; i < json.length; i++) {
@@ -170,7 +176,7 @@
                                 var celda3 = newDOM("td");
                                 var celda4 = newDOM("td");
                                 var btnAction = newDOM('button');
-                                btnAction.setAttribute('class', 'btn btn-accent d-block w-90 box-center-h');
+                                btnAction.setAttribute('class', 'btn btn-accent d-block w-90 box-center-h table-micuenta-btn');
                                 btnAction.appendChild(newTextNode('Ver mas'));
                                 celda1.appendChild(newTextNode(json[i].idFacturaEncabezado));
                                 celda1.setAttribute('class', 'table-id');
@@ -201,10 +207,92 @@
                 document.getElementById('historial').setAttribute("style", "display:inline");
             }
 
-            mostrarTarjetas();
-            mostrarHistorial();
-            /*--Cambio--*/
-            areaTarjetas();
+            /*Show more on history*/
+            /*
+            <!-- View-more-history -->
+            <div class="dialog-error-back d-none" id="dialog-resumen-history">
+                <div class="dialog-micuenta-content box-center-fixed">
+                    <div class="p-1">
+                        <h5>Factura: 012345678901</h5>
+                        <h5>Fecha: 2019/05/05</h5>
+                    </div>
+                    <div class="p-1">
+                        <h3>Forma de pago</h3>
+                        <hr>
+                        <table class="w-100" style="border-spacing: 0px;">
+                            <tbody id="cart-cards-body-table">
+                                <!-- EXAMPLE CARD -->
+                                <tr class="cart-pay-method-row">
+                                    <td class="pr-1 max-width-px-45">
+                                    </td>
+                                    <td>
+                                        <img src="/Assets/IMG/card.png" alt="Tarjeta" width="136px" height="136px">
+                                    </td>
+                                    <td class="p-1">
+                                        XXXX-1234
+                                    </td>
+                                </tr>
+                                <!---->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-1">
+                        <h3>Resumen</h3>
+                        <hr>
+                        <div class="mb cart-resumen" id="resumen-history">
+                            <!-- cart item example -->
+                            <div class="cart-item p-1 mb">
+                                <div class="cart-item-img"
+                                    style="background: url(/Assets/IMG/ProductsIMG/temp_pc.png) no-repeat;background-size: contain;background-position: center center;">
+                                </div>
+                                <p class="cart-item-name">Computadora todo en 1, monitor y componentes (Precio unitario
+                                    550000) </p>
+                                <div class="cart-item-price ">
+                                    1
+                                </div>
+                            </div>
+                            <!--end example-->
+                        </div>
+                    </div>
+                    <div class="p-1 mb">
+                        <hr>
+                        <div class="cart-purchase mt-1">
+                            <div class="w-40 d-inline-block">
+                                <p class="text-right">Sub total
+                                </p>
+                            </div>
+                            <div class="w-58 d-inline-block">
+                                <p class="text-right" id="subTotal">0
+                                </p>
+                            </div>
+                            <div class="w-40 d-inline-block">
+                                <p class="text-right">IVA
+                                </p>
+                            </div>
+                            <div class="w-58 d-inline-block">
+                                <p class="text-right" id="iva">0
+                                </p>
+                            </div>
+                            <div class="w-40 d-inline-block">
+                                <p class="text-right">Total
+                                </p>
+                            </div>
+                            <div class="w-58 d-inline-block cart-total">
+                                <p class="text-right"><strong id="total">0</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more-close"></div>
+                </div>
+            </div>
+        <!-- END-View-more-history --></hr>
+        */
+            function newDialogMoreHistory(data) {
+                var dialogBack = newDOM('div');
+                var content = newDOM('div');
+            }
+
         } else {
             loginRedirect();
         }
