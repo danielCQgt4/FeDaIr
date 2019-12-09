@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../Assets/CSS/cycStyles.css">
+        <link rel="stylesheet" href="../Assets/CSS/general.css">
+        <link rel="stylesheet" href="../Assets/CSS/fidestore.css">
+        <link rel="stylesheet" href="../Assets/CSS/msgAdvice.css">
+        <link rel="icon" href="../Assets/IMG/favicon.png">
+        <title>FideStore</title>
+        <!-- OWN CSS -->
+        <link rel="stylesheet" href="../Assets/CSS/carrito.css">
+    </head>
+
+    <body class="body" id="body">
+        <nav class="nav text-white">
+            <a href="./productos.html" class="nav-title">FideStore</a>
+            <ul class="nav-list" id="nav-list" style="display: none;">
+                <!-- 
+                Apartados
+                -->
+            </ul>
+            <div class="btn-action" id="btn-action">
+            </div>
+        </nav>
+
+        <!-- CONTENT -->
+        <div class="box-carrito">
+            <h3>Resumen</h3>
+            <hr>
+            <!-- RESUMEN CARRITO -->
+            <div class="mb cart-resumen" id="resumen-cart">
+                <!-- START RESUMEN CARRITO -->
+                <!-- cart item example
+                <div class="cart-item p-1 mb">
+                    <div class="cart-item-delete"></div>
+                    <div class="cart-item-img"
+                        style="background: url(/Assets/IMG/temp_pc.png) no-repeat;background-size: contain;background-position: center center;">
+                    </div>
+                    <p class="cart-item-name">Computadora todo en 1, monitor y componentes </p>
+                    <div class="cart-item-cant-control">
+                        <div class="cart-item-cant-control-less p-2"></div>
+                        <div class="cart-item-cant-control-value">1</div>
+                        <div class="cart-item-cant-control-plus p-2"></div>
+                    </div>
+                    <div class="cart-item-price">1234567890.12</div>
+                </div>
+                end example-->
+            </div>
+            <!-- END RESUMEN CARRITO -->
+            <h3>Metodo de pago</h3>
+            <hr>
+            <div class="cart-pay-method mt-1 mb-2">
+                <div class="cart-pay-method-row-add-card" id="btn-newAddCard"></div>
+                <table class="w-100" style="border-spacing: 0px;">
+                    <tbody id="cart-cards-body-table">
+                        <!-- EXAMPLE CARD
+                        <tr class="cart-pay-method-row">
+                            <td class="pr-1 max-width-px-45">
+                            </td>
+                            <td>
+                                <img src="/Assets/IMG/card.png" alt="Tarjeta" width="136px" height="136px">
+                            </td>
+                            <td class="p-1">
+                                XXXX-1234
+                            </td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+            <h3>Confirma tu compra</h3>
+            <hr>
+            <div class="cart-purchase mt-1">
+                <div class="w-40 d-inline-block">
+                    <p class="text-right">Sub total
+                    </p>
+                </div>
+                <div class="w-58 d-inline-block">
+                    <p class="text-right" id="subTotal">0
+                    </p>
+                </div>
+                <div class="w-40 d-inline-block">
+                    <p class="text-right">IVA
+                    </p>
+                </div>
+                <div class="w-58 d-inline-block">
+                    <p class="text-right" id="iva">0
+                    </p>
+                </div>
+                <div class="w-40 d-inline-block">
+                    <p class="text-right">Total
+                    </p>
+                </div>
+                <div class="w-58 d-inline-block cart-total">
+                    <p class="text-right"><strong id="total">0</strong>
+                    </p>
+                </div>
+                <div class="cart-action">
+                    <a href="/Views/productos.html" class="btn btn-accent cart-btn">Seguir comprando</a>
+                    <input type="button" value="Comprar" class="btn btn-success cart-btn" id="btn-comprar">
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER -->
+
+        <footer class="footer text-white p-4">
+            <div class="text-center mt-1">
+                <p>FideStore@cycwebservice.cf</p>
+            </div>
+        </footer>
+
+        <script src="../Assets/JS/general.js"></script>
+        <script src="../Assets/JS/carrito.js"></script>
+    </body>
+
+</html>

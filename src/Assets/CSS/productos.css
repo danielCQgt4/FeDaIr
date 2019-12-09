@@ -1,0 +1,311 @@
+.carta {
+    width: 65%;
+    margin: 30px auto;
+    display: block;
+    font-family: roboto;
+    background: white;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.carta:active {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+.carta:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+}
+
+.carta-image {
+    width: 100%;
+    height: 200px;
+    display: inline-block;
+}
+
+.carta-texto {
+    grid-area: text;
+}
+
+.card-stats {
+    display: flex;
+    justify-content: space-around;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    background: #222;
+}
+
+.stat {
+    display: block;
+}
+
+.stat-see {
+    display: block;
+    width: 50%;
+    background-color: white;
+    color: #222;
+    border-bottom-left-radius: 10px;
+    border: 1px solid #222;
+    padding: 1.8em;
+}
+
+.stat-see:hover {
+    color: white;
+    background-image: linear-gradient(to left, #222 0%, #222 100%);
+}
+
+.stat-add {
+    padding: 1.5em;
+    display: block;
+    width: 50%;
+    background-color: white;
+    color: #0079bf;
+    border-bottom-right-radius: 10px;
+    border: 1px solid #0079bf;
+}
+
+.stat-add:hover {
+    color: white;
+    background-image: linear-gradient(to left, #0079bf 0%, #0079bf 100%);
+}
+
+.carta-title {
+    padding: .3em 0;
+}
+
+@import "compass/css3";
+.products-list-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -4px -4px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.product-item-list {
+    flex: 1 0 21em;
+    position: relative;
+    height: auto;
+}
+
+.product-item-list:empty {
+    height: 0;
+    border: none;
+}
+
+/* voew-more */
+
+.view-more-back {
+    position: fixed;
+    background-color: #00000033;
+    width: 100%;
+    height: 100%;
+}
+
+.view-more-content {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45em;
+    height: 29em;
+    background-color: #fff;
+    box-shadow: 0px 0px 15px #000000;
+    border-radius: 5px;
+}
+
+.view-more-close {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    background: url(/Assets/IMG/x.png) no-repeat;
+    background-size: 20px 20px;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+}
+
+.view-more-close:hover {
+    cursor: pointer;
+}
+
+.view-more-img {
+    width: 50%;
+    height: 100%;
+}
+
+.view-more-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+}
+
+.view-more-agregar {
+    width: 40%;
+    position: absolute;
+    right: 5%;
+    top: 65%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* TABLETA */
+
+@media screen and (max-width:1100px) {
+    .carta {
+        height: auto;
+        width: 80%;
+        margin: 30px auto;
+        max-height: 400px;
+        max-width: 357.8px;
+    }
+    .carta:hover {
+        transform: scale(1);
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+    }
+    .stat-see {
+        padding: 1em;
+    }
+    .stat-add {
+        padding: .8em;
+    }
+    .products-list-container {
+        overflow: hidden;
+        width: 100%;
+    }
+    /* view-more */
+    .view-more-content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30em;
+        height: 20em;
+        background-color: #fff;
+        box-shadow: 0px 0px 15px #000000;
+        border-radius: 5px;
+    }
+    .view-more-close:hover {
+        cursor: pointer;
+    }
+    .view-more-img {
+        width: 50%;
+        height: 100%;
+    }
+    .view-more-info {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 50%;
+    }
+    .view-more-text {
+        font-size: 10px;
+    }
+    .view-more-agregar {
+        width: 40%;
+        position: absolute;
+        right: 5%;
+        top: 65%;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
+
+/* TELEFONO */
+
+@media screen and (max-width:600px) {
+    .carta {
+        height: auto;
+        width: 80%;
+        margin: 30px auto;
+        max-height: 405px;
+    }
+    .carta:hover {
+        transform: scale(1);
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+    }
+    .products-area::after {
+        display: block;
+        height: auto;
+        width: 80%;
+        content: "";
+        justify-content: space-between;
+    }
+    .carta-image {
+        max-height: 121.5px;
+    }
+    .stat-see {
+        padding: 1.3em;
+    }
+    .stat-add {
+        padding: 1em;
+    }
+    .products-list-container {
+        overflow: hidden;
+        width: 100%;
+    }
+    /* view-more */
+    .view-more-back {
+        position: fixed;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+    }
+    .view-more-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: 0px 0px 0px #000000;
+        border-radius: 0px;
+    }
+    .view-more-close {
+        position: absolute;
+        top: .5em;
+        right: .5em;
+        background: url(/Assets/IMG/x.png) no-repeat;
+        background-size: 20px 20px;
+        background-position: center;
+        width: 20px;
+        height: 20px;
+    }
+    .view-more-close:hover {
+        cursor: pointer;
+    }
+    .view-more-img {
+        position: initial;
+        width: 100%;
+        height: 55%;
+        display: block;
+    }
+    .view-more-info {
+        padding: .5em 1em;
+        display: block;
+        position: initial;
+        width: 100%;
+        height: auto;
+    }
+    .view-more-text {
+        font-size: 30px;
+    }
+    .view-more-agregar {
+        margin: 5em auto;
+        display: block;
+        width: 90%;
+        position: initial;
+        right: 5%;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}

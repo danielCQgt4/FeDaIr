@@ -1,0 +1,59 @@
+/*View-more-history*/
+
+.dialog-micuenta-content {
+    width: 55em;
+    height: 30em;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #000000;
+    overflow: scroll;
+}
+
+/*Tables*/
+
+.table-micuenta {
+    font-size: 16px;
+}
+
+.table-micuenta-btn {
+    font-size: 16px;
+}
+
+/*TABLETA*/
+
+@media screen and (max-width:1100px) {
+    /*Tables*/
+    .table-micuenta {
+        font-size: 11px;
+    }
+    .table-micuenta-btn {
+        font-size: 11px;
+    }
+    /*View-more-history*/
+    .dialog-micuenta-content {
+        width: 40em;
+        height: 25em;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px #000000;
+        overflow: scroll;
+    }
+}
+
+/*TELEFONO*/
+
+@media screen and (max-width:600px) {
+    /*Tables*/
+    .table-micuenta {
+        font-size: 8px;
+    }
+    .table-micuenta-btn {
+        font-size: 9px;
+    }
+    /*View-more-history*/
+    .dialog-micuenta-content {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px #000000;
+        overflow: scroll;
+    }
+}
