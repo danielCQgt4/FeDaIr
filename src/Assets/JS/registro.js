@@ -25,7 +25,6 @@
     });
 
     function registro() {
-        var loginForm = document.getElementById('loginForm');
         if (validaciones()) {
             var data = 'addUsers=1&cedula=' + cedula.value + '&usuario=' + usuario.value + '&contra=' + pass.value + '&nombre=' + nombre.value + '&telefono=' + telefono.value;
             console.log(data);
@@ -38,6 +37,8 @@
                             var loginForm = document.getElementById('loginForm');
                             errorMessage('Error al Registrarse', loginForm);
                         }
+                    } else {
+                        dialogError('!Error de comunicacion');
                     }
                 });
             } else {
@@ -90,17 +91,23 @@
         if (usuario.value != '') {
             postAjaxRequest(apiURL, 'addUsers=2&userTemp=' + usuario.value, function (json) {
                 if (json.errorBody != 'Error' || json.error != '') {
-                    if (json[0].valid == 1) {
-                        inputFail(usuario, true);
-                        userErrorInfo.style.display = "block";
-                        errors.userValid = false;
-                        btnRegistro.style.display = 'none';
+                    if (json.errorBC != '1') {
+                        if (json[0].valid == 1) {
+                            inputFail(usuario, true);
+                            userErrorInfo.style.display = "block";
+                            errors.userValid = false;
+                            btnRegistro.style.display = 'none';
+                        } else {
+                            errors.userValid = true;
+                            inputFail(usuario, false);
+                            userErrorInfo.style.display = "none";
+                            btnRegistro.style.display = 'block';
+                        }
                     } else {
-                        errors.userValid = true;
-                        inputFail(usuario, false);
-                        userErrorInfo.style.display = "none";
-                        btnRegistro.style.display = 'block';
+                        dialogError('!Ha ocurrido un error inesperado, intenta mas tarde');
                     }
+                } else {
+                    dialogError('!Error de comunicacion');
                 }
             });
         } else {

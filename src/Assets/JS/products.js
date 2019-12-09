@@ -21,26 +21,6 @@
         listaCategories.innerHTML = '';
     }
 
-    //New DOM
-
-    /*<div class="view-more-back box-center-fixed" id="view-more">
-        <div class="position-relative view-more-content">
-            <div class="view-more-img" style="
-        background: url(/Assets/IMG/temp_pc.png) no-repeat;
-        background-size: contain;
-        background-position: center;">
-            </div>
-            <div class="view-more-info pt-2">
-                <h5>Descripcion</h5>
-                <p class="pl-1 mt-1 view-more-text">Computadora todo en 1, monitor y componentes</p>
-            </div>
-            <div class="view-more-action">
-                <input type="button" value="Agregar al carrito" class="stat stat-add view-more-agregar">
-            </div>
-            <div class="view-more-close"></div>
-        </div>
-    </div> */
-
     function newViewMore(i, reference) {
         var body = document.getElementById('body');
         var divViewMoreBack = newDOM('div');//as parent
@@ -133,9 +113,6 @@
         title.setAttribute('class', 'carta-title');
         title.appendChild(newTextNode(productShowing[i].nombre));
         divBody.appendChild(title);
-        //text.setAttribute('class', 'mt-1 pl-1 pr-1');
-        //text.appendChild(newTextNode(newProductDescription(productShowing[i].descripcion)));
-        //divBody.appendChild(text);
         var divAction = newDOM('div'),
             divStatSee = newDOM('div'),
             divStatAdd = newDOM('div');

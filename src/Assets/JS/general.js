@@ -247,8 +247,7 @@ function newTextNode(text) {
 //Funciones de FIDESTORE
 var btnAction = document.getElementById('btn-action'),
     navList = document.getElementById('nav-list'),
-    //apiURL = '../API/api.php';
-    apiURL = 'http://fidestori.cf/API/api.php';
+    apiURL = '../API/api.php';
 
 function newApartado(data) {
     var li = newDOM('li');
