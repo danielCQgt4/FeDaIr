@@ -192,11 +192,10 @@ function postAjaxRequest(url, data, callFunction) {
         ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
                 var json = JSON.parse(this.responseText);
                 callFunction(json);
             } else {
-                if (this.status >= 400 && this.status <= 451) {
+                if ((this.status >= 400 && this.status <= 451) || this.status == 0) {
                     callFunction({ errorBody: 'Error', error: this.status, errorBC: 'No communication' });
                 }
             }
@@ -248,7 +247,8 @@ function newTextNode(text) {
 //Funciones de FIDESTORE
 var btnAction = document.getElementById('btn-action'),
     navList = document.getElementById('nav-list'),
-    apiURL = '../API/api.php';
+    //apiURL = '../API/api.php';
+    apiURL = 'http://fidestori.cf/API/api.php';
 
 function newApartado(data) {
     var li = newDOM('li');
@@ -293,7 +293,7 @@ function listApartados() {
                 dialogError('Se ha producido un error innesperado, intentalo mas tarde');
             }
         } else {
-            dialogError('Se ha producido un error de comunicacion');
+            dialogError('!Error de comunicacion');
         }
     });
 }

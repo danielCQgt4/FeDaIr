@@ -27,7 +27,7 @@
                     errorMessage('Error al iniciar sesion', loginForm);
                 }
             } else {
-                errorMessage('Error de comunicacion');
+                dialogError('!Error de comunicacion');
             }
         });
     }

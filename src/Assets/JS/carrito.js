@@ -13,20 +13,6 @@
             var btnAddCard = document.getElementById('btn-newAddCard');
             var items = [], curCard = { id: -1, referecia: '****' }, maxCards = 0, newCards = -1;
 
-            /* 
-            <tr class="cart-pay-method-row">
-                <td class="pr-1" id="cart-card-selected-1">
-                    <img src="/Assets/IMG/check.png" alt="Seleccionada" width="45px" height="45px">
-                </td>
-                <td>
-                    <img src="/Assets/IMG/card.png" alt="Tarjeta" width="136px" height="136px">
-                </td>
-                <td class="p-1">
-                    XXXX-1234
-                </td>
-            </tr>
-            */
-
             function validateCvv(data, cb) {
                 var body = document.getElementById('body');
                 var id = 'cart-validate-cvv-card';
@@ -342,12 +328,16 @@
                     postAjaxRequest(apiURL, 'cart=4&idProduct=' + e.idProduct, function (json) {
                         if (json.errorBody != 'Error' || json.error != '') {
                             cb(json);
+                        } else {
+                            dialogError('!Error de comunicacion');
                         }
                     });
                 } else if (e.name == 'btn-plus') {
                     postAjaxRequest(apiURL, 'cart=3&idProduct=' + e.idProduct, function (json) {
                         if (json.errorBody != 'Error' || json.error != '') {
                             cb(json);
+                        } else {
+                            dialogError('!Error de comunicacion');
                         }
                     });
                 }
@@ -356,15 +346,19 @@
             function listCartResumen() {
                 postAjaxRequest(apiURL, 'cart=1', function (json) {
                     if (json.errorBody != 'Error' || json.error != '') {
-                        resumenContainer.innerHTML = '';
-                        items = json;
-                        for (i = 0; i < json.length; i++) {
-                            var cartItem = newResumenItem(json[i]);
-                            resumenContainer.appendChild(cartItem);
+                        if (json.errorBC != '1') {
+                            resumenContainer.innerHTML = '';
+                            items = json;
+                            for (i = 0; i < json.length; i++) {
+                                var cartItem = newResumenItem(json[i]);
+                                resumenContainer.appendChild(cartItem);
+                            }
+                            calcularValores();
+                        } else {
+                            dialogError('Ha ocurrido un error innesperado, intenta mas tarde');
                         }
-                        calcularValores();
                     } else {
-                        dialogError('Ha ocurrido un error');
+                        dialogError('!Error de comunicacion');
                     }
                 });
             }
@@ -372,13 +366,17 @@
             function listCards() {
                 postAjaxRequest(apiURL, 'cart=5', function (json) {
                     if (json.errorBody != 'Error' || json.error != '') {
-                        cardsList.innerHTML = '';
-                        if (json.length != undefined) {
-                            maxCards = json.length;
-                        }
-                        for (i = 0; i < maxCards; i++) {
-                            var card = newCartMethod(json[i], i);
-                            cardsList.appendChild(card);
+                        if (json.errorBC != '1') {
+                            cardsList.innerHTML = '';
+                            if (json.length != undefined) {
+                                maxCards = json.length;
+                            }
+                            for (i = 0; i < maxCards; i++) {
+                                var card = newCartMethod(json[i], i);
+                                cardsList.appendChild(card);
+                            }
+                        } else {
+                            dialogError('Ha ocurrido un error innesperado, intenta mas tarde');
                         }
                     } else {
                         dialogError('Ha ocurrido un error');
