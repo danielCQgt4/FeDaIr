@@ -42,9 +42,8 @@ function getJson($sql)
                 }
                 return json_encode($json);
             }
-            return resError('NotFound data');
         }
-        return resError('');
+        return json_encode(["noData" => 1]);
     } catch (mysqli_sql_exception $th) {
         return resError('');
     }
