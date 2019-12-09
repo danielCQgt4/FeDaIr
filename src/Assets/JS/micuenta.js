@@ -169,6 +169,7 @@
                             tabla.appendChild(fila);
                         } else {
                             for (var i = 0; i < json.length; i++) {
+                                const obj = json[i];
                                 var fila = newDOM("tr");
                                 fila.setAttribute("id", "factura")
                                 var celda1 = newDOM("td");
@@ -178,6 +179,16 @@
                                 var btnAction = newDOM('button');
                                 btnAction.setAttribute('class', 'btn btn-accent d-block w-90 box-center-h table-micuenta-btn');
                                 btnAction.appendChild(newTextNode('Ver mas'));
+                                btnAction.addEventListener('click', function () {
+                                    newDialogMoreHistory({
+                                        idFacturaEncabezado: obj.idFacturaEncabezado,
+                                        fecha: obj.fecha,
+                                        referencia: obj.referencia,
+                                        subTotal: obj.subTotal,
+                                        IVA: obj.impuesto,
+                                        total: obj.total
+                                    });
+                                });
                                 celda1.appendChild(newTextNode(json[i].idFacturaEncabezado));
                                 celda1.setAttribute('class', 'table-id');
                                 celda2.appendChild(newTextNode(json[i].fecha));
@@ -254,7 +265,7 @@
                             <!--end example-->
                         </div>
                     </div>
-                    <div class="p-1 mb">
+                    <div class="p-1">
                         <hr>
                         <div class="cart-purchase mt-1">
                             <div class="w-40 d-inline-block">
@@ -289,10 +300,149 @@
         <!-- END-View-more-history --></hr>
         */
             function newDialogMoreHistory(data) {
+                var body = document.getElementById('body');
                 var dialogBack = newDOM('div');
+                dialogBack.setAttribute('class', 'dialog-error-back');
+                dialogBack.setAttribute('id', 'dialog-resumen-history');
+                dialogBack.addEventListener('click', function () {
+                    removeMSG(dialogBack.id);
+                });
                 var content = newDOM('div');
+                content.setAttribute('class', 'dialog-micuenta-content box-center-fixed p-1');
+                var encabezado = newDOM('div'), // as parent
+                    formaPago = newDOM('div'), // as parent
+                    resumen = newDOM('div'), // as parent
+                    totals = newDOM('div'); // as parent
+                encabezado.setAttribute('class', 'p-1');
+                formaPago.setAttribute('class', 'p-1');
+                resumen.setAttribute('class', 'p-1');
+                totals.setAttribute('class', 'p-1');
+                var factura = newDOM('h5'),
+                    fecha = newDOM('h5');
+                factura.appendChild(newTextNode('Factura: ' + data.idFacturaEncabezado));
+                fecha.appendChild(newTextNode('Fecha: ' + data.fecha));
+                encabezado.appendChild(factura);//
+                encabezado.appendChild(fecha);//
+                var titleFormaPago = newDOM('h3'),
+                    separator1 = newDOM('hr'),
+                    tableFormaPago = newDOM('table'),
+                    tbodyFormaPago = newDOM('tbody'),
+                    trFormaPago = newDOM('tr'),
+                    tdImg = newDOM('td'),
+                    img = newImg({
+                        src: '/Assets/IMG/card.png',
+                        alt: 'Tarjeta',
+                        width: '136px',
+                        height: '136px'
+                    }),
+                    tdInfo = newDOM('td');
+                titleFormaPago.appendChild(newTextNode('Forma de pago'));
+                tableFormaPago.setAttribute('class', 'w-100');
+                tableFormaPago.setAttribute('style', 'border-spacing: 0px;');
+                trFormaPago.setAttribute('class', 'cart-pay-method-row');
+                tdImg.setAttribute('class', 'p-1');
+                tdImg.appendChild(img);
+                tdInfo.appendChild(newTextNode('XXXX-' + data.referencia));
+                trFormaPago.appendChild(tdImg);
+                trFormaPago.appendChild(tdInfo);
+                tbodyFormaPago.appendChild(trFormaPago);
+                tableFormaPago.appendChild(tbodyFormaPago);
+                formaPago.appendChild(titleFormaPago);//
+                formaPago.appendChild(separator1);//
+                formaPago.appendChild(tableFormaPago);//
+                var titleResumen = newDOM('h3'),
+                    separator2 = newDOM('hr'),
+                    divResumen = newDOM('div');
+                titleResumen.appendChild(newTextNode('Resumen'));
+                divResumen.setAttribute('class', 'mb cart-resumen');
+                //Get data from server
+                postAjaxRequest(apiURL, 'historial=2&idFaturaEncabezado=' + data.idFacturaEncabezado, function (json) {
+                    if (json.errorBody != 'Error' || json.error != '') {
+                        for (i = 0; i < json.length; i++) {
+                            var item = newResumenItem(json[i]);
+                            divResumen.appendChild(item);
+                        }
+                    }
+                });
+                resumen.appendChild(titleResumen);//
+                resumen.appendChild(separator2);//
+                resumen.appendChild(divResumen);//
+                var separator3 = newDOM('hr'),
+                    totalesContent = newTotalesContent(data);
+                totals.appendChild(separator3);//
+                totals.appendChild(totalesContent);//
+                var close = newDOM('div');
+                close.setAttribute('class', 'view-more-close');
+                close.addEventListener('click', function () {
+                    removeMSG(dialogBack.id);
+                });
+                content.appendChild(encabezado);
+                content.appendChild(formaPago);
+                content.appendChild(resumen);
+                content.appendChild(totals);
+                content.appendChild(close);
+                dialogBack.appendChild(content);
+                body.appendChild(dialogBack);
+                return dialogBack;
             }
 
+            function newTotalesContent(data) {
+                var divTotal = newDOM('div'),
+                    subTotalTitle = newTotalTitle({ title: 'SubTotal' }),
+                    subTotalValue = newTotalValue({ value: data.subTotal }),
+                    ivaTitle = newTotalTitle({ title: 'IVA' }),
+                    ivaValue = newTotalValue({ value: data.IVA }),
+                    totalTitle = newTotalTitle({ title: 'Total' }),
+                    totalValue = newTotalValue({ value: data.total });
+                divTotal.setAttribute('class', 'cart-purchase mt-1');
+                divTotal.appendChild(subTotalTitle);
+                divTotal.appendChild(subTotalValue);
+                divTotal.appendChild(ivaTitle);
+                divTotal.appendChild(ivaValue);
+                divTotal.appendChild(totalTitle);
+                divTotal.appendChild(totalValue);
+                return divTotal;
+            }
+
+            function newTotalTitle(data) {
+                var div = newDOM('div'),
+                    text = newDOM('p');
+                div.setAttribute('class', 'w-40 d-inline-block');
+                text.setAttribute('class', 'text-right');
+                text.appendChild(newTextNode(data.title));
+                div.appendChild(text);
+                return div;
+            }
+
+            function newTotalValue(data) {
+                var div = newDOM('div'),
+                    text = newDOM('p');
+                div.setAttribute('class', 'w-58 d-inline-block');
+                text.setAttribute('class', 'text-right');
+                text.appendChild(newTextNode(data.value));
+                div.appendChild(text);
+                return div;
+            }
+
+            function newResumenItem(data) {
+                var divPrincipal = newDOM('div');
+                divPrincipal.setAttribute('class', 'cart-item p-1 mb');
+                var divImg = newDOM('div');
+                divImg.setAttribute('class', 'cart-item-img');
+                divImg.setAttribute('style', 'background: url(/Assets/IMG/ProductsIMG/' + data.urlImg + ') no-repeat;background-size: contain;background-position: center center;');
+                divPrincipal.appendChild(divImg);
+                var description = newDOM('p');
+                description.setAttribute('class', 'cart-item-name');
+                description.appendChild(newTextNode(data.descripcion));
+                divPrincipal.appendChild(description);
+                var cant = newDOM('div');
+                cant.setAttribute('class', 'cart-item-price');
+                cant.appendChild(newTextNode(data.cant));
+                divPrincipal.appendChild(cant);
+                return divPrincipal;
+            }
+
+            //end
         } else {
             loginRedirect();
         }

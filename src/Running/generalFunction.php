@@ -220,6 +220,13 @@ function showHistorial()
     $sql = "select * from FacturaEncabezado where idUsuario = " . $session->getIdUser();
     return getJson($sql);
 }
+
+function showDetailsFromReceipt($filter)
+{
+    $sql = "select cant,urlImg,concat(descripcion,'(precio: ',precio,')') as descripcion 
+    from Producto p, FacturaDetalle fd where (p.idProducto = fd.idProducto) and fd.idFacturaEncabezado = " . $filter['idFacturaEncabezado'];
+    return getJson($sql);
+}
 //Fin Fernanda
 
 /*Facturacion*/

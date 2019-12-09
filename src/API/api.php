@@ -144,6 +144,9 @@ if (isset($dataPOST['login'])) {
 } else if (isset($dataPOST['historial'])) {
     if ($dataPOST['historial'] == '1') {
         echo showHistorial();
+    } else if ($dataPOST['historial'] == '2') {
+        $filter = ["idFacturaEncabezado" => $dataPOST['idFaturaEncabezado']];
+        echo showDetailsFromReceipt($filter);
     }
 } else {
     $session->closeSession();

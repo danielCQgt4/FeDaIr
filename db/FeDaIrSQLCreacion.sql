@@ -123,6 +123,7 @@ create table FacturaDetalle(
     idFaturaDetalle int primary key auto_increment,
     cant int(4),
     idProducto int not null,
-    constraint idProducto_FacturaDetalle_fk foreign key(idProducto) references Producto(idProducto)
+    constraint idProducto_FacturaDetalle_fk foreign key(idProducto) references Producto(idProducto),
+    constraint idFacturaEncabezado_FaturaDetalle_fk foreign key(idFacturaEncabezado) references FacturaEncabezado(idFacturaEncabezado)
 );
 
