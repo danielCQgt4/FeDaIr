@@ -182,6 +182,7 @@ function errorMessage(text, parent) {
     btnExit.setAttribute('type', 'button');
     error_msg.appendChild(btnExit);
     parent.insertBefore(error_msg, parent.childNodes[0]);
+    return error_msg;
 }
 
 /* Funcion general de ajax*/

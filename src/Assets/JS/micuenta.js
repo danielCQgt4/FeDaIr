@@ -12,6 +12,7 @@
             var btnDos = document.getElementById('dos');
             var tarjeta = document.getElementById('tarjeta');
             var tipo = document.getElementsByName('tipo');
+            var errorMsg = undefined;
 
             btnUno.addEventListener('click', areaTarjetas);
             btnDos.addEventListener('click', areaHistorial);
@@ -34,10 +35,12 @@
                     }
                 }
                 var data = 'addTarjeta=1&tarjeta=' + tarjeta.value + '&tipo=' + tip;
-                console.log(data);
                 if (validacionAddTarjeta()) {
                     postAjaxRequest(apiURL, data, function (json) {
                         if (json.errorBody != 'Error' || json.error != '') {
+                            if (errorMsg != undefined) {
+                                removeMSG(errorMsg.id);
+                            }
                             if (json.errorBC != '1') {
                                 if (json.add == '1') {
                                     mostrarTarjetas();
@@ -58,11 +61,11 @@
 
             function validacionAddTarjeta() {
                 var add = false;
+                var errors = [];
                 var registerForm = document.getElementById('registerForm');
                 if (tarjeta.value.length != 16) {
-                    errorMessage('Ingrese una tarjeta valida', registerForm);
+                    errors.push({ msg: 'Ingresa una tarjeta valida' });
                     inputFail(tarjeta, true);
-                    add = false;
                 } else {
                     for (i = 0; i < tarjeta.value.length; i++) {
                         if (tarjeta.value.charAt(i) == 0 ||
@@ -76,23 +79,34 @@
                             tarjeta.value.charAt(i) == 8 ||
                             tarjeta.value.charAt(i) == 9) {
                             inputFail(tarjeta, false);
-                            add = true;
                         } else {
-                            errorMessage('Corrige la informacion', registerForm);
+                            errors.push({ msg: 'Ingresa una tarjeta valida' });
                             inputFail(tarjeta, true);
-                            add = false;
                             break;
                         }
                     }
                 }
+                var typeChecked = false;
                 for (i = 0; i < tipo.length; i++) {
                     if (tipo[i].checked) {
-                        add = true;
+                        typeChecked = true;
                         break;
-                    } else {
-                        errorMessage('Corrige la informacion', registerForm);
-                        add = false;
                     }
+                }
+                if (!typeChecked) {
+                    errors.push({ msg: 'Selecciona un tipo' });
+                }
+                if (errors.length > 0) {
+                    var msg = '';
+                    if (errors.length == 1) {
+                        msg = errors[0].msg;
+                    } else {
+                        msg = 'Corrige la informacion';
+                    }
+                    errorMsg = errorMessage(msg, registerForm);
+                    add = false;
+                } else {
+                    add = true;
                 }
                 return add;
             }
@@ -101,7 +115,6 @@
                 var tabla = document.getElementById("tarjetaBody");
                 tabla.innerHTML = "";
                 var data = 'addTarjeta=2';
-                console.log(data);
                 postAjaxRequest(apiURL, data, function (json) {
                     if (json.errorBody != 'Error' || json.error != '') {
                         if (json.error == 1) {
@@ -160,11 +173,8 @@
             function mostrarHistorial() {
                 var tabla = document.getElementById("historialBody");
                 tabla.innerHTML = "";
-                var data = 'historial=1';
-                console.log(data);
-                postAjaxRequest(apiURL, data, function (json) {
+                postAjaxRequest(apiURL, 'historial=1', function (json) {
                     if (json.errorBody != 'Error' || json.error != '') {
-                        console.log(json.length);
                         if (json.error == 1) {
                             var fila = newDOM("tr");
                             var celda1 = newDOM("td");
@@ -377,5 +387,4 @@
         }
     });
 })();
-
 
