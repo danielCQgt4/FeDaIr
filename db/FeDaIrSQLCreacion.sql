@@ -13,6 +13,7 @@ drop table if exists CategoriaProducto;
 drop table if exists Perfil_Menu;
 drop table if exists Usuario;
 drop table if exists Perfil;
+drop table if exists Menu;
 
 /*
 	Usuario
