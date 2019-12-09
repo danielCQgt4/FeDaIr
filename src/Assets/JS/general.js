@@ -197,7 +197,7 @@ function postAjaxRequest(url, data, callFunction) {
                 callFunction(json);
             } else {
                 if (this.status >= 400 && this.status <= 451) {
-                    callFunction({ errorBody: 'Error', error: this.status });
+                    callFunction({ errorBody: 'Error', error: this.status, errorBC: 'No communication' });
                 }
             }
         };
@@ -217,7 +217,7 @@ function getAjaxRequest(url, data, callFunction) {
                 callFunction(json);
             } else {
                 if (this.status >= 400 && this.status <= 451) {
-                    callFunction({ errorBody: 'Error', error: this.status });
+                    callFunction({ errorBody: 'Error', error: this.status, errorBC: 'No communication' });
                 }
             }
         };
@@ -284,9 +284,13 @@ function newApartado(data) {
 function listApartados() {
     postAjaxRequest(apiURL, 'login=3', function (json) {
         if (json.errorBody != 'Error' || json.error != '') {
-            for (i = 0; i < json.length; i++) {
-                var li = newApartado(json[i]);
-                navList.appendChild(li);
+            if (json.errorBC != '1') {
+                for (i = 0; i < json.length; i++) {
+                    var li = newApartado(json[i]);
+                    navList.appendChild(li);
+                }
+            } else {
+                dialogError('Se ha producido un error innesperado, intentalo mas tarde');
             }
         } else {
             dialogError('Se ha producido un error de comunicacion');
@@ -304,6 +308,7 @@ function acceptedEntrance(cb) {
             }
         } else {
             dialogError('Error de comunicacion!');
+            cb(false);
         }
     });
 }

@@ -98,7 +98,6 @@ function cantExistencia($product)
 }
 
 /*Carrrito */
-
 function showCarrito()
 {
     global $session;
@@ -160,8 +159,13 @@ function cantidadActual($filter)
     }
 }
 
+function listCards()
+{
+    global $session;
+    $sql = "select idFormaPago,right(numeroTarjeta,4) as numeroTarjeta from FormaPago where idUsuario = " . $session->getIdUser();
+    return getJson($sql);
+}
 /*Mi cuenta*/
-//Fernanda
 function addUser($user)
 {
     try {
@@ -227,7 +231,6 @@ function showDetailsFromReceipt($filter)
     from Producto p, FacturaDetalle fd where (p.idProducto = fd.idProducto) and fd.idFacturaEncabezado = " . $filter['idFacturaEncabezado'];
     return getJson($sql);
 }
-//Fin Fernanda
 
 /*Facturacion*/
 function beforePurchase()
@@ -327,7 +330,7 @@ function makePurchase($filter)
 function listApartados($filter)
 {
     global $session;
-    if ($filter['access'] == 1) {
+    if ($filter['access'] == 1) { //m.nombre -> m.nombr
         $sql = "select m.nombre as nombre,m.url as urlApartago,m.accPriv as priv, m.accPublic as pub, m.logNeeded as logNeeded
         from Perfil_Menu pm,Perfil p, Menu m
         where (pm.idPerfil = p.idPerfil) and (pm.idMenu = m.idMenu) and 
@@ -342,11 +345,4 @@ function listApartados($filter)
         pm.idPerfil = 1";
         return getJson($sql);
     }
-}
-
-function listCards()
-{
-    global $session;
-    $sql = "select idFormaPago,right(numeroTarjeta,4) as numeroTarjeta from FormaPago where idUsuario = " . $session->getIdUser();
-    return getJson($sql);
 }

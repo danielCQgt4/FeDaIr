@@ -68,6 +68,8 @@ if (isset($dataPOST['login'])) {
                 echo '{ "add": 0 }';
             }
         }
+    } else {
+        echo resError('No hay acceso a este apartado');
     }
 } else if (isset($dataPOST['cart'])) {
     if (isAccepted($session->getUser(), $session->getPassword())) {
@@ -96,6 +98,8 @@ if (isset($dataPOST['login'])) {
                 echo '{ "error": 1 }';
             }
         }
+    } else {
+        echo resError('No hay acceso a este apartado');
     }
 } else if (isset($dataPOST['addUsers'])) {
     if ($dataPOST['addUsers'] == '1') {
@@ -140,6 +144,8 @@ if (isset($dataPOST['login'])) {
                 echo '{ "delete": 0 }';
             }
         }
+    } else {
+        echo resError('No hay acceso a este apartado');
     }
 } else if (isset($dataPOST['historial'])) {
     if ($dataPOST['historial'] == '1') {

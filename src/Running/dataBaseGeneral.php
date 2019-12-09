@@ -1,5 +1,10 @@
 <?php
 
+function resError($msg)
+{
+    return json_encode(["errorBC" => 1, "msg" => $msg]);
+}
+
 function runDml($dml)
 {
     global $connection;
@@ -7,7 +12,6 @@ function runDml($dml)
         $result = $connection->getConexion()->query($dml);
         return $result;
     } catch (mysqli_sql_exception $ex) {
-        echo $ex;
         return false;
     }
 }
@@ -38,10 +42,10 @@ function getJson($sql)
                 }
                 return json_encode($json);
             }
-            return json_encode(["noRecords" => $result->num_rows]);
+            return resError('NotFound data');
         }
-        return json_encode(["error" => 1]);
+        return resError('');
     } catch (mysqli_sql_exception $th) {
-        return json_encode(["error" => 1]);
+        return resError('');
     }
 }

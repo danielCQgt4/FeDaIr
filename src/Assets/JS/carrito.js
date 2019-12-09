@@ -373,7 +373,7 @@
                 postAjaxRequest(apiURL, 'cart=5', function (json) {
                     if (json.errorBody != 'Error' || json.error != '') {
                         cardsList.innerHTML = '';
-                        if (json.length != undefined){
+                        if (json.length != undefined) {
                             maxCards = json.length;
                         }
                         for (i = 0; i < maxCards; i++) {
