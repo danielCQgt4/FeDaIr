@@ -6,6 +6,7 @@ $connection = new Connection();
 $session = new Session();
 $dataPOST = $_POST;
 $dataGET = $_GET;
+header('Content-type: application/json');
 
 /* API LOGIN*/
 if (isset($dataPOST['login'])) {
@@ -154,6 +155,9 @@ if (isset($dataPOST['login'])) {
         $filter = ["idFacturaEncabezado" => $dataPOST['idFaturaEncabezado']];
         echo showDetailsFromReceipt($filter);
     }
+} else  if (isset($dataPOST['close'])) {
+    $cerrado = $session->closeSession();
+    echo json_encode(['close' => $cerrado]);
 } else {
     $session->closeSession();
     header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Views/productos.html');
