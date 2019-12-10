@@ -5,7 +5,7 @@
 ## Integrantes
 
 * Fernanda Fernandez @Ferfdz1995
-* Irvin Gonzalez
+* Irvin Gonzalez 
 * Danilo Obando
 * Daniel Coto @danielCQgt4
 
