@@ -193,8 +193,14 @@ function postAjaxRequest(url, data, callFunction) {
         ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                var json = JSON.parse(this.responseText);
-                callFunction(json);
+                console.log(this.responseType);
+                if (typeof JSON.parse(this.responseText) === 'object') {
+                    var json = JSON.parse(this.responseText);
+                    callFunction(json);
+                } else {
+                    callFunction(this.responseText);
+                }
+
             } else {
                 if ((this.status >= 400 && this.status <= 451) || this.status == 0) {
                     callFunction({ errorBody: 'Error', error: this.status, errorBC: 'No communication' });

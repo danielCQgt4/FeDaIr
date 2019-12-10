@@ -10,12 +10,14 @@
             var btnGuardarTarjeta = document.getElementById('btnGuardarTarjeta');
             var btnUno = document.getElementById('uno');
             var btnDos = document.getElementById('dos');
+            var btnTres = document.getElementById('tres');
             var tarjeta = document.getElementById('tarjeta');
             var tipo = document.getElementsByName('tipo');
             var errorMsg = undefined;
 
             btnUno.addEventListener('click', areaTarjetas);
             btnDos.addEventListener('click', areaHistorial);
+            btnTres.addEventListener('click', cerrarSesion);
             btnGuardarTarjeta.addEventListener('click', guardarTarjeta);
             btnGuardarTarjeta.addEventListener('keyup', function (e) {
                 if (e.keyCode == 13) {
@@ -231,6 +233,24 @@
             function areaHistorial() {
                 document.getElementById('tarj').setAttribute("style", "display:none");
                 document.getElementById('historial').setAttribute("style", "display:inline");
+            }
+
+            function cerrarSesion() {
+                var msg = dialogError('Espere un momento mientras se cierra tu sesion');
+                postAjaxRequest(apiURL, 'close=1', function (json) {
+                    if (json.errorBody != 'Error' || json.error != '') {
+                        if (json.close) {
+                            removeMSG(msg.id);
+                            indexRedirect();
+                        } else {
+                            removeMSG(msg.id);
+                            dialogError('!No se ha podido cerrar sesion');
+                        }
+                    } else {
+                        removeMSG(msg.id);
+                        dialogError('!Error de comunicacion');
+                    }
+                });
             }
 
             function newDialogMoreHistory(data) {

@@ -187,6 +187,6 @@ class Session
     public function closeSession()
     {
         session_unset();
-        session_destroy();
+        return session_destroy();
     }
 }
