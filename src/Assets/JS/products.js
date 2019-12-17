@@ -97,8 +97,6 @@
         return descripcion;
     }
 
-    var temp = '';
-
     function newProduct(i) {
         var liProducto = newDOM('li');
         liProducto.setAttribute('class', 'product-item-list');
@@ -107,7 +105,6 @@
         var divIMG = newDOM('div');
         divIMG.setAttribute('class', 'carta-image');
         divIMG.setAttribute('style', 'background: url(/Assets/IMG/ProductsIMG/' + productShowing[i].urlImg + ') no-repeat;background-size: contain;background-position: center center;');
-        temp += '/Assets/IMG/ProductsIMG/' + productShowing[i].urlImg + '\n';
         var divBody = newDOM('div'),
             title = newDOM('h4'),
             text = newDOM('p');
@@ -153,8 +150,6 @@
                     var product = newProduct(i);
                     listaProducts.insertBefore(product, listaProducts.childNodes[0]);
                 }
-                console.log(temp);
-
             }
         });
     }

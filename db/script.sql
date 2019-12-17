@@ -204,7 +204,3 @@ insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,u
 values ('cemento','cemento holcim ',7000,20,0,
 'cemento.jpg',6);
 
-
-
-delete from producto where idProducto > 0;
-alter table producto auto_increment = 1;
