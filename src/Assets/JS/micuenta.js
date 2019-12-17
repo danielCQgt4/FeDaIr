@@ -154,6 +154,8 @@
                                                     dialogError('!Error');
                                                 }
                                             });
+                                        } else {
+                                            removeMSG(msg.id);
                                         }
                                     });
                                 });
