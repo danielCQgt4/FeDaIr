@@ -127,3 +127,84 @@ value ('Ropa deportiva', 'Conjunto ropa deportiva hombre', 50000, 1000, 0, 'ropa
 
 insert into Producto (nombre, descripcion, precio, cantidadDisponible, cantCompras, urlImg, idCategoriaProducto) 
 value ('Tenis', 'Tenis color rojo para correr', 54000, 1100, 0, 'tenis.png', 7);
+
+-- Danilo Obando
+
+-- producto tecnologia
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('Audifonos','audifonos tipo airpods, cargador y estuche',30000,4,0,'audifonos-airpod.jpg',1);
+
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('impresora','conexion de bluetooth y tinta cartuchos',75000,3,0,'impresora.jpg',1);
+
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('Camara','camara canon con varios lentes',200000,2,0,'camara.jpg',1);
+
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('lente realidad virtual','lentes para realidad virtual para todo tipo de consola',100000,1,0,'realidad-virtual.jpg',1);
+
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('smartwatch','reloj inteligente ,conexion con android y ios',25000,4,0,'smartwatch.jpg',1);
+
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('iphone11','telefono celular ,color: negr,dorado,turqueza',700000,3,0,'iphone-11.jpg',1);
+
+insert into Producto(nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+value('nintendo-switch','consola de videojuego con 3 juegos incorporados',150000,5,0,'nintendo-switch.webp',1);
+
+-- producto comida 
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('pudin','budin con sabor a coco',3000,4,0,'pudin.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('pasta','Disfruta de la deliciosa pasta ',2000,5,0,'pasta.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('pescado','Disfruta del sabroso pescado a la plancha',3500,3,0,'pescado.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('surtido','Disfruta de los exquisitos surtidos',5000,5,0,'surtido.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('costillas','Disfruta de los exquisitas costillas con sabores salados y dulces',750,10,0,'costillas.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('lasagna','rica lasagna de pollo ',4500,2,0,'lasagna.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('pancake','delicioso pancake con miel',1500,3,0,'pancake.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('pizza','rica pizza de diferentes sabores ',7000,5,0,'peperonni-pizza.jpg',3);
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto) 
+value ('salchipapa','rica salchipapa',2500,3,0,'salchipapa.jpg',3);
+
+-- producto ferreteria
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('tornillo','varios tamaños para diferentes funciones',50,55,0,
+'tornillo.jpg',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('clavos','clavos para madera ',100,50,0,
+'clavos.webp',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('set construccion','Combo de varias herramientas (pala,carretillo,cinta)',30000,10,0,
+'set.jpg',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('set llaves','combo de varias llaves(francesa,alicate perro)',10000,8,0,
+'set-llaves.jpg',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('metabo','incorpora discos de corte de metal ',20000,7,0,
+'matabo.jpg',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('serrucho','serrucho con hoja gruesa ',17000,10,0,
+'serrucho.jpg',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('cinta metrica','cinta metrica ',3000,15,0,
+'cinta-metrica.png',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('soldadora','Combo de varias herramientas (martillo,desatornillador,pinzas,etc)',15000,15,0,
+'soldadora.jpg',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('llavin','llavin yale para porton o puerta',10000,15,0,
+'llavin.png',6);
+insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+values ('cemento','cemento holcim ',7000,20,0,
+'cemento.jpg',6);
+
+
+
+delete from producto where idProducto > 0;
+alter table producto auto_increment = 1;

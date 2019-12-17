@@ -1,4 +1,4 @@
-create user 'epiz_24797336'@'%' identified by 'vb0KOPl63P09E';
+-- create user 'epiz_24797336'@'%' identified by 'vb0KOPl63P09E';
 create database epiz_24797336_fedair;
 -- grant all privileges on epiz_24797336_fedair.* to 'epiz_24797336'@'%';
 use epiz_24797336_fedair;
