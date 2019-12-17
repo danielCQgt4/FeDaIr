@@ -173,34 +173,34 @@ insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,u
 value ('salchipapa','rica salchipapa',2500,3,0,'salchipapa.jpg',3);
 
 -- producto ferreteria
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('tornillo','varios tamaños para diferentes funciones',50,55,0,
 'tornillo.jpg',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('clavos','clavos para madera ',100,50,0,
 'clavos.webp',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('set construccion','Combo de varias herramientas (pala,carretillo,cinta)',30000,10,0,
 'set.jpg',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('set llaves','combo de varias llaves(francesa,alicate perro)',10000,8,0,
 'set-llaves.jpg',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('metabo','incorpora discos de corte de metal ',20000,7,0,
 'matabo.jpg',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('serrucho','serrucho con hoja gruesa ',17000,10,0,
 'serrucho.jpg',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('cinta metrica','cinta metrica ',3000,15,0,
 'cinta-metrica.png',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('soldadora','Combo de varias herramientas (martillo,desatornillador,pinzas,etc)',15000,15,0,
 'soldadora.jpg',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('llavin','llavin yale para porton o puerta',10000,15,0,
 'llavin.png',6);
-insert into producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
+insert into Producto (nombre,descripcion,precio,cantidadDisponible,cantCompras,urlImg,idCategoriaProducto)
 values ('cemento','cemento holcim ',7000,20,0,
 'cemento.jpg',6);
 
